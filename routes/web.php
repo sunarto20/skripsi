@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('layouts.main');
 })->name('dashboard');
+
+
+Route::get('/lokasi','RoomController@index')->name('index.room');

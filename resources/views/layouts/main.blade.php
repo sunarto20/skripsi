@@ -413,13 +413,6 @@
 							<li class="">
 								<a href="index.html">
 									<i class="menu-icon fa fa-caret-right"></i>
-									<span class="menu-text"> Data Guru </span>
-								</a>
-								<b class="arrow"></b>
-							</li>
-							<li class="">
-								<a href="index.html">
-									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Data Kelas </span>
 								</a>
 								<b class="arrow"></b>
@@ -550,6 +543,17 @@
 		</script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
+		{{-- datatables --}}
+
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="assets/js/dataTables.buttons.min.js"></script>
+		<script src="assets/js/buttons.flash.min.js"></script>
+		<script src="assets/js/buttons.html5.min.js"></script>
+		<script src="assets/js/buttons.print.min.js"></script>
+		<script src="assets/js/buttons.colVis.min.js"></script>
+		<script src="assets/js/dataTables.select.min.js"></script>
+
 		<!-- page specific plugin scripts -->
 
 		<!-- ace scripts -->
@@ -557,5 +561,22 @@
 		<script src="assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+
+		<script>
+			jQuery(function($) {
+				//initiate dataTables plugin
+				var myTable = 
+				$('#dynamic-table')
+				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+				.DataTable( {
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],			
+			})
+		</script>
 	</body>
 </html>

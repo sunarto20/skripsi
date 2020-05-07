@@ -22,4 +22,4 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/lokasi','RoomController@index')->name('index.room');
+Route::get('/lokasi', 'LokasiController@index')->name('index.room');

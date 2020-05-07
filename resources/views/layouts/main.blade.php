@@ -410,37 +410,39 @@
 
 						<b class="arrow"></b>
 						<ul class="submenu">
-
 							<li class="">
 								<a href="index.html">
-									<i class="menu-icon fa fa-barcode"></i>
-									<span class="menu-text"> Data Barang </span>
-								</a>
-		
-								<b class="arrow"></b>
-							</li>
-							<li class="">
-								<a href="index.html">
-									<i class="menu-icon fa fa-building-o"></i>
-									<span class="menu-text"> Data Kelas </span>
-								</a>
-		
-								<b class="arrow"></b>
-							</li>
-							<li class="">
-								<a href="index.html">
-									<i class="menu-icon fa fa-users"></i>
-									<span class="menu-text"> Data Siswa </span>
-								</a>
-		
-								<b class="arrow"></b>
-							</li>
-							<li class="">
-								<a href="index.html">
-									<i class="menu-icon fa fa-users"></i>
+									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Data Guru </span>
 								</a>
-		
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="index.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Data Kelas </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="index.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Data Siswa </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="index.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Data Lokasi </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="index.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Data Barang </span>
+								</a>
 								<b class="arrow"></b>
 							</li>
 						</ul>
@@ -462,11 +464,12 @@
 							<li class="">
 								<a href="typography.html">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Typography
+									Peminjaman Barang
 								</a>
 	
 								<b class="arrow"></b>
 							</li>
+							
 						</ul>
 					</li>
 					<li class="">

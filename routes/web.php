@@ -22,4 +22,12 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/lokasi', 'LokasiController@index')->name('index.room');
+// Route Room
+Route::get('/ruangan', 'RoomController@index')->name('room.index');
+Route::get('/ruangan/tambah', 'RoomController@create')->name('room.create');
+Route::post('/ruangan/tambah', 'RoomController@store')->name('room.store');
+Route::get('/ruangan/{id}/edit', 'RoomController@edit')->name('room.edit');
+Route::put('/ruangan/{id}', 'RoomController@update')->name('room.update');
+Route::DELETE('/ruangan/{id}', 'RoomController@destroy')->name('room.delete');
+
+// Route::resource('ruangan', 'RoomController');

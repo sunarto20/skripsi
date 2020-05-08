@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\room;
+
+use \App\Room;
+
 class RoomController extends Controller
 {
     /**
@@ -13,9 +15,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = room::get();
+        $rooms = Room::select('*')->orderBy('id', 'desc')->get();
 
-        return view('room.index',['rooms'=>$rooms]);
+        return view('room.index', ['rooms' => $rooms]);
     }
 
     /**
@@ -25,7 +27,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('room.add');
     }
 
     /**
@@ -36,7 +38,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255'
+        ]);
+        Room::create([
+            'name' => trim($request->name)
+        ]);
+        return redirect('ruangan')->with('status', 'Data Berhasil di Tambah');
     }
 
     /**
@@ -47,7 +55,6 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -58,7 +65,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::findOrFail($id);
+        // dd($room);
+        return view('room.edit', ['room' => $room]);
     }
 
     /**
@@ -70,9 +79,14 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255'
+        ]);
+        Room::where('id', $id)->update([
+            'name' => $request->name
+        ]);
+        return redirect('ruangan')->with('status', 'Data Berhasil di Ubah');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +95,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Room::findOrFail($id)->delete();
+        return redirect('ruangan');
     }
 }

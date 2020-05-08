@@ -3,28 +3,29 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Blank Page - Ace Admin</title>
-
+		<title>@yield('title') - SIMBeng</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}" />
+		<link rel="stylesheet" href="{{url('assets/css/datatables.bootstrap.css')}}" />
+		<link rel="stylesheet" href="{{url('assets/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
 
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+		<link rel="stylesheet" href="{{url('assets/css/fonts.googleapis.com.css')}}" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="{{url('assets/css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="{{url('assets/css/ace-skins.min.css')}}" />
+		<link rel="stylesheet" href="{{url('assets/css/ace-rtl.min.css')}}" />
 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -33,7 +34,7 @@
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="{{url('assets/js/ace-extra.min.js')}}"></script>
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -59,8 +60,8 @@
 				<div class="navbar-header pull-left">
 					<a href="index.html" class="navbar-brand">
 						<small>
-							<img clas src="assets/images/logo.png" alt="" height="25">
-							SIMBeng 
+							<img clas src="{{url('assets/images/logo.png')}}" alt="" height="25">
+							SIMBeng
 						</small>
 					</a>
 				</div>
@@ -228,7 +229,7 @@
 									<ul class="dropdown-menu dropdown-navbar">
 										<li>
 											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+												<img src="{{url('assets/images/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -245,7 +246,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+												<img src="{{url('assets/images/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -262,7 +263,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+												<img src="{{url('assets/images/avatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -279,7 +280,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+												<img src="{{url('assets/images/avatars/avatar2.png')}}" class="msg-photo" alt="Kate's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -296,7 +297,7 @@
 
 										<li>
 											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+												<img src="{{url('assets/images/avatars/avatar5.png')}}" class="msg-photo" alt="Fred's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -324,7 +325,7 @@
 
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="{{url('assets/images/avatars/user.jpg')}}" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -368,7 +369,7 @@
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+			<div id="sidebar" class="sidebar responsive ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
@@ -425,9 +426,9 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="index.html">
+								<a href="{{route('room.index')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									<span class="menu-text"> Data Lokasi </span>
+									<span class="menu-text"> Data Ruangan </span>
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -440,7 +441,7 @@
 							</li>
 						</ul>
 					</li>
-					
+
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-balance-scale"></i>
@@ -459,10 +460,10 @@
 									<i class="menu-icon fa fa-caret-right"></i>
 									Peminjaman Barang
 								</a>
-	
+
 								<b class="arrow"></b>
 							</li>
-							
+
 						</ul>
 					</li>
 					<li class="">
@@ -487,7 +488,7 @@
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
-							
+
 						</div><!-- /.nav-search -->
 					</div>
 
@@ -496,7 +497,6 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -531,7 +531,8 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="{{url('assets/js/jquery-2.1.4.min.js')}}"></script>
+		{{-- <script src="{{url('assets/js/jquery3.js')}}"></script> --}}
 
 		<!-- <![endif]-->
 
@@ -539,44 +540,30 @@
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='{{url('assets/js/jquery.mobile.custom.min.js')}}'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="{{url('assets/js/bootstrap.min.js')}}"></script>
 
 		{{-- datatables --}}
 
-		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-		<script src="assets/js/dataTables.buttons.min.js"></script>
-		<script src="assets/js/buttons.flash.min.js"></script>
-		<script src="assets/js/buttons.html5.min.js"></script>
-		<script src="assets/js/buttons.print.min.js"></script>
-		<script src="assets/js/buttons.colVis.min.js"></script>
-		<script src="assets/js/dataTables.select.min.js"></script>
+        <script src="{{url('assets/js/jquery.dataTables.min.js')}}"></script>
+		<script src="{{url('assets/js/jquery.dataTables.bootstrap.min.js')}}"></script>
 
 		<!-- page specific plugin scripts -->
 
 		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		<script src="{{url('assets/js/ace-elements.min.js')}}"></script>
+		<script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script>
+		<script src="{{url('assets/js/ace.min.js')}}"></script>
 
 		<!-- inline scripts related to this page -->
 
 		<script>
-			jQuery(function($) {
-				//initiate dataTables plugin
-				var myTable = 
-				$('#dynamic-table')
-				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-				.DataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [],			
-			})
-		</script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+        </script>
+
+        @stack('more-js')
 	</body>
 </html>

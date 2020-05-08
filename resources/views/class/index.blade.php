@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Data ruangan')
+@section('title','Data kelas')
 @section('content')
 
 <div class="row">
@@ -9,38 +9,38 @@
             <div class="flashdata" data-flashdata="{{session('status')}}"></div>
         @endif
             <div class="clearfix">
-                <div class="pull-right  "style="margin-bottom:8px !important">
-                    <a href="{{route('room.create')}}" class="btn btn-sm btn-success">
-                        <i class="fa fa-plus"> Tambah Data</i>
+                <div class="pull-right" style="margin-bottom:8px !important">
+                    <a href="{{route('class.create')}}" class="btn btn-sm btn-success">
+                    <i class="fa fa-plus"> Tambah Data</i>
                     </a>
                 </div>
             </div>
             <div class="table-header no-margin-top">
-                Data Ruangan
+                Data Kelas
             </div>
 
             <table id="example" class="table table-hover table-bordered" width="100%" >
                 <thead>
                     <tr>
                         <th width="25">#</th>
-                        <th>Nama Ruangan</th>
+                        <th>Nama Kelas</th>
                         <th width="10">Aksi</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rooms as $room)
+                    @foreach ($classes as $class)
 
 
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$room->name}}</td>
+                        <td>{{$class->name}}</td>
                         <td>
                             <div class="text-center">
-                            <a class="green" href=" {{route('room.edit',['id'=>$room->id])}} ">
+                            <a class="green" href=" {{route('class.edit',['id'=>$class->id])}} ">
                                 <i class="ace-icon fa fa-pencil "></i>
                             </a>
-                            <a class="red tombol-hapus"  onclick="deleteData('{{$room->id}}')"><i class="ace-icon fa fa-trash"></i>
+                            <a class="red tombol-hapus"  onclick="deleteData('{{$class->id}}')"><i class="ace-icon fa fa-trash"></i>
                             </a>
                         </div>
                         </td>
@@ -65,8 +65,8 @@
     function deleteData(id){
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
-        let url1= '{{url('ruangan')}}';
-        let url = "{{url('ruangan')}}"+'/'+id;
+        let url1= '{{url('kelas')}}';
+        let url = "{{url('kelas')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
             text: "Anda akan menghapus data ini!" + id,

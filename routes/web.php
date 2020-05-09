@@ -41,5 +41,6 @@ Route::get('/kelas/{id}/ubah', 'ClassController@edit')->name('class.edit');
 Route::put('/kelas/{id}', 'ClassController@update')->name('class.update');
 Route::DELETE('/kelas/{id}', 'ClassController@destroy')->name('class.delete');
 
-
+//
 Route::get('siswa', 'StudentController@index')->name('student.index');
+Route::get('siswa/{id}', 'StudentController@show')->name('student.detail');

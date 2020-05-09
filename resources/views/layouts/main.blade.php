@@ -553,7 +553,7 @@
 
 		<!-- ace scripts -->
 		<script src="{{url('assets/js/ace-elements.min.js')}}"></script>
-		<script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script>
+		{{-- <script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script> --}}
 		<script src="{{url('assets/js/ace.min.js')}}"></script>
 
 		<!-- inline scripts related to this page -->

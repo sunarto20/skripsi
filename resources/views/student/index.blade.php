@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Data ruangan')
+@section('title','Data Siswa')
 @section('content')
 
 <div class="row">
@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$student->registration_number}}</td>
-                        <td>{{$student->name}}</td>
+                        <td><a href=" {{route('student.detail',['id'=>$student->id])}} ">{{$student->name}}</a></td>
                         <td>{{$student->class->name}}</td>
                         <td>
                             <div class="text-center">

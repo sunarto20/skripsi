@@ -40,3 +40,6 @@ Route::post('/kelas/tambah', 'ClassController@store')->name('class.store');
 Route::get('/kelas/{id}/ubah', 'ClassController@edit')->name('class.edit');
 Route::put('/kelas/{id}', 'ClassController@update')->name('class.update');
 Route::DELETE('/kelas/{id}', 'ClassController@destroy')->name('class.delete');
+
+
+Route::get('siswa', 'StudentController@index');

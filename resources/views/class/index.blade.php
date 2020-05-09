@@ -69,7 +69,7 @@
         let url = "{{url('kelas')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
-            text: "Anda akan menghapus data ini!" + id,
+            text: "Anda akan menghapus data ini!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

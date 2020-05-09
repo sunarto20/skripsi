@@ -419,7 +419,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="index.html">
+								<a href=" {{route('student.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Data Siswa </span>
 								</a>

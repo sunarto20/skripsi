@@ -53,7 +53,7 @@ class StudentController extends Controller
             'gender' => 'required',
             'phoneNumber' => 'required|min:3|max:255'
         ]);
-        return $request;
+        // return $request;
         // Insert to table Users
         $user = User::create([
             'name' => $request->name,
@@ -75,7 +75,7 @@ class StudentController extends Controller
             'class_id' => $request->class
         ]);
 
-        return redirect('student.index')->with('status', 'Data Siswa Berhasil di Tambah');
+        return redirect(route('student.index'))->with('status', 'Data Siswa Berhasil di Tambah');
     }
 
     /**
@@ -99,7 +99,16 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::where('id', $id)->with(['user', 'class'])->first();
+        $classes = Classes::get();
+        // $student = json_encode($student);
+        // return $student;
+        // retr$student = response($student);
+
+        return view('student.edit', [
+            'student' => $student,
+            'classes' => $classes
+        ]);
     }
 
     /**
@@ -111,7 +120,25 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Check Validate Field Students
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'class' => 'required',
+            'gender' => 'required',
+            'phoneNumber' => 'required|min:3|max:255'
+        ]);
+        // return $request;
+
+        // Update data to table Students
+
+        Student::where('id', $id)->update([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'phone_number' => $request->phoneNumber,
+            'class_id' => $request->class
+        ]);
+
+        return redirect(route('student.index'))->with('status', 'Data Siswa Berhasil di Ubah');
     }
 
     /**
@@ -122,6 +149,7 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Student::findOrFail($id)->delete();
+        // return redirect('student.index');
     }
 }

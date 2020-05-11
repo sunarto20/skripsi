@@ -41,7 +41,7 @@
                         <td>{{$student->class->name}}</td>
                         <td>
                             <div class="text-center">
-                            <a class="green" href=" {{route('room.edit',['id'=>$student->id])}} ">
+                            <a class="green" href=" {{route('student.edit',['id'=>$student->id])}} ">
                                 <i class="ace-icon fa fa-pencil "></i>
                             </a>
                             <a class="red tombol-hapus"  onclick="deleteData('{{$student->id}}')"><i class="ace-icon fa fa-trash"></i>
@@ -69,11 +69,11 @@
     function deleteData(id){
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
-        let url1= '{{url('ruangan')}}';
-        let url = "{{url('ruangan')}}"+'/'+id;
+        let url1= '{{url('siswa')}}';
+        let url = "{{url('siswa')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
-            text: "Anda akan menghapus data ini!" + id,
+            text: "Anda akan menghapus data ini!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -90,7 +90,9 @@
                         Swal.fire(
                             'Terhapus!',
                             'Data berhasil di hapus.',
-                            'success'
+                            'success',
+                            50000
+                            
                         );
                         window.location = url1;
                     },

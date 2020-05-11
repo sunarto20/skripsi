@@ -44,7 +44,7 @@ class RoomController extends Controller
         Room::create([
             'name' => trim($request->name)
         ]);
-        return redirect('ruangan')->with('status', 'Data Berhasil di Tambah');
+        return redirect(route('room.index'))->with('status', 'Data Berhasil di Tambah');
     }
 
     /**
@@ -85,7 +85,7 @@ class RoomController extends Controller
         Room::where('id', $id)->update([
             'name' => $request->name
         ]);
-        return redirect('ruangan')->with('status', 'Data Berhasil di Ubah');
+        return redirect(route('room.index'))->with('status', 'Data Berhasil di Ubah');
     }
     /**
      * Remove the specified resource from storage.
@@ -96,6 +96,6 @@ class RoomController extends Controller
     public function destroy($id)
     {
         Room::findOrFail($id)->delete();
-        return redirect('ruangan');
+        return redirect(route('room.index'));
     }
 }

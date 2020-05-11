@@ -58,6 +58,8 @@
 
 @push('more-js')
 <script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script>
+<script src="{{url('assets/js/promise_polyfill.js')}}"></script>
+
 <script>
     // Deleted Data
 

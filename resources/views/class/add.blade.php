@@ -11,7 +11,7 @@
                 Tambah Data Kelas
             </h1>
         </div><!-- /.page-header -->
-        <form action="{{route('class.store')}}" method="POST">
+    <form action="{{route('class.store')}}" method="POST">
             @csrf
             @method('POST')
             <div class="form-group row @error('name') has-error @enderror">

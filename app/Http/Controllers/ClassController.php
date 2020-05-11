@@ -42,7 +42,7 @@ class ClassController extends Controller
         Classes::create([
             'name' => trim($request->name)
         ]);
-        return redirect('kelas')->with('status', 'Data Berhasil di Tambah');
+        return redirect('class.index')->with('status', 'Data Berhasil di Tambah');
     }
 
     /**
@@ -84,7 +84,7 @@ class ClassController extends Controller
         Classes::where('id', $id)->update([
             'name' => $request->name
         ]);
-        return redirect('kelas')->with('status', 'Data Berhasil di Ubah');
+        return redirect('class.index')->with('status', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -95,6 +95,6 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        $class = Classes::findOrFail($id)->delete();
+        Classes::findOrFail($id)->delete();
     }
 }

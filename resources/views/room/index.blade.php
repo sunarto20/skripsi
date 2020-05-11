@@ -89,8 +89,9 @@
                             'Terhapus!',
                             'Data berhasil di hapus.',
                             'success'
-                        );
-                        window.location = url1;
+                        ).then((isConfirm) => {
+                            if(isConfirm) window.location = url1;
+                        });
                     },
 
                 });

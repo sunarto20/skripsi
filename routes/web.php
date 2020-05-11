@@ -30,8 +30,6 @@ Route::get('/ruangan/{id}/ubah', 'RoomController@edit')->name('room.edit');
 Route::put('/ruangan/{id}', 'RoomController@update')->name('room.update');
 Route::DELETE('/ruangan/{id}', 'RoomController@destroy')->name('room.delete');
 
-// Route::resource('ruangan', 'RoomController');
-
 
 // Route Class
 Route::get('kelas', 'ClassController@index')->name('class.index');
@@ -42,6 +40,7 @@ Route::put('/kelas/{id}', 'ClassController@update')->name('class.update');
 Route::DELETE('/kelas/{id}', 'ClassController@destroy')->name('class.delete');
 
 //
-Route::get('siswa', 'StudentController@index')->name('student.index');
-Route::get('siswa/{id}', 'StudentController@show')->name('student.detail');
-Route::get('siswa/tambah', 'StudentController@create')->name('student.create');
+Route::get('/siswa', 'StudentController@index')->name('student.index');
+Route::get('/siswa/tambah', 'StudentController@create')->name('student.create');
+Route::get('/siswa/{id}', 'StudentController@show')->name('student.detail');
+Route::post('kelas/tambah', 'StudentController@store')->name('student.store');

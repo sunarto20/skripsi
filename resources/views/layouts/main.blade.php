@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="{{url('assets/css/datatables.bootstrap.css')}}" />
 		<link rel="stylesheet" href="{{url('assets/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
 
+		@stack('more-css')
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->

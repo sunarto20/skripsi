@@ -10,7 +10,7 @@
         @endif
             <div class="clearfix">
                 <div class="pull-right  "style="margin-bottom:8px !important">
-                    <a href="{{route('room.create')}}" class="btn btn-sm btn-success">
+                    <a href="{{route('student.create')}}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus"> Tambah Data</i>
                     </a>
                 </div>

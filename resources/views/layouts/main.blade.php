@@ -12,7 +12,11 @@
 		<link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}" />
 		<link rel="stylesheet" href="{{url('assets/css/datatables.bootstrap.css')}}" />
 		<link rel="stylesheet" href="{{url('assets/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
-
+		<style>
+			.swal2-popup {
+				font-size: 1.6rem !important;
+			}
+		</style>
 		@stack('more-css')
 		<!-- page specific plugin styles -->
 

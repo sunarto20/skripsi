@@ -88,7 +88,8 @@
                         Swal.fire(
                             'Terhapus!',
                             'Data berhasil di hapus.',
-                            'success'
+                            'success',
+                            showConfirmButton: true,
                         );
                         window.location = url1;
                     },

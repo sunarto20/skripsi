@@ -109,8 +109,9 @@
         Swal.fire({
             icon: 'success',
             title: data,
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true,
+        }).then((isConfirm)=>{  
+            if (isConfirm) window.location.reload;
         })
     }
 </script>

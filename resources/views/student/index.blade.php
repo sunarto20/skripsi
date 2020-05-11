@@ -90,16 +90,15 @@
                         Swal.fire(
                             'Terhapus!',
                             'Data berhasil di hapus.',
-                            'success',
-                            50000
-                            
-                        );
-                        window.location = url1;
+                            'success'
+                        ).then((isConfirm) => {
+                            if(isConfirm) window.location = url1;
+                        });
                     },
 
                 });
             }
-        })
+        });
     }
 
 
@@ -112,8 +111,9 @@
         Swal.fire({
             icon: 'success',
             title: data,
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true,
+        }).then((isConfirm)=>{  
+            if (isConfirm) window.location.reload;
         })
     }
 </script>

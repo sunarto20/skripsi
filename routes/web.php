@@ -44,3 +44,4 @@ Route::DELETE('/kelas/{id}', 'ClassController@destroy')->name('class.delete');
 //
 Route::get('siswa', 'StudentController@index')->name('student.index');
 Route::get('siswa/{id}', 'StudentController@show')->name('student.detail');
+Route::get('siswa/tambah', 'StudentController@create')->name('student.create');

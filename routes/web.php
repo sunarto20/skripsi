@@ -47,3 +47,8 @@ Route::post('/siswa/tambah', 'StudentController@store')->name('student.store');
 Route::get('/siswa/{id}/edit', 'StudentController@edit')->name('student.edit');
 Route::put('/siswa/{id}', 'StudentController@update')->name('student.update');
 Route::delete('/siswa/{id}', 'StudentController@destroy')->name('student.delete');
+
+// Route Items
+Route::get('barang', 'ItemController@index')->name('item.index');
+Route::get('barang/tambah', 'ItemController@create')->name('item.create');
+Route::post('barang/tambah', 'ItemController@store')->name('item.store');

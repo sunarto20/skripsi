@@ -17,9 +17,10 @@ class ItemController extends Controller
     public function index()
     {
         // $items = Item::get();
-        $items = Unit::with(['item', 'room'])->groupBy('item_id')->get();
-        //return $items;
-        // return view('item.index');
+        $items = Item::withCount('unit')->get();
+
+        // return $items;
+        return view('item.index', ['items' => $items]);
     }
 
     /**
@@ -59,6 +60,9 @@ class ItemController extends Controller
             'foto' => 'ini foto'
         ]);
 
+        //ini kenapa di looping mas?
+
+        // itu kan buat nambahin nomor_unit, jadi walau itemnya sama tapi nomer unitnya berbeda makanya di looping
         for ($i = 0; $i < $request->amount; $i++) {
             $number = $request->number_unit + $i;
 

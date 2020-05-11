@@ -23,15 +23,31 @@
                 <thead>
                     <tr>
                         <th width="25">#</th>
-                        <th>NIS</th>
-                        <th>Nama Siswa</th>
-                        <th>Kelas</th>
+                        <th>Nama Barang</th>
+                        <th>Spesifikasi</th>
+                        <th>Jumlah</th>
                         <th width="10">Aksi</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    
+@foreach ($items as $item)
+    <tr>
+        <td>{{$loop->iteration}}</td>
+        <td>{{$item->name}}</td>
+        <td>{{$item->spesification}}</td>
+        <td>{{$item->unit_count}}</td>
+        <td>
+            <div class="text-center">
+                <a class="green" href=" {{route('item.edit',['id'=>$item->id])}} ">
+                    <i class="ace-icon fa fa-pencil "></i>
+                </a>
+                <a class="red tombol-hapus"  onclick="deleteData('{{$item->id}}')"><i class="ace-icon fa fa-trash"></i>
+                </a>
+            </div>
+        </td>
+    </tr>
+@endforeach
                 </tbody>
             </table>
 
@@ -94,7 +110,7 @@
             icon: 'success',
             title: data,
             showConfirmButton: true,
-        }).then((isConfirm)=>{  
+        }).then((isConfirm)=>{
             if (isConfirm) window.location.reload;
         })
     }

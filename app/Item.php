@@ -12,6 +12,6 @@ class Item extends Model
 
     public function unit()
     {
-        return $this->hasOne(Unit::class);
+        return $this->hasMany(Unit::class);
     }
 }

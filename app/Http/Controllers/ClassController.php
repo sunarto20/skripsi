@@ -42,7 +42,7 @@ class ClassController extends Controller
         Classes::create([
             'name' => trim($request->name)
         ]);
-        return redirect('class.index')->with('status', 'Data Berhasil di Tambah');
+        return redirect()->route('class.index')->with('status', 'Data Berhasil di Tambah');
     }
 
     /**
@@ -84,7 +84,7 @@ class ClassController extends Controller
         Classes::where('id', $id)->update([
             'name' => $request->name
         ]);
-        return redirect('class.index')->with('status', 'Data Berhasil di Ubah');
+        return redirect()->route('class.index')->with('status', 'Data Berhasil di Ubah');
     }
 
     /**

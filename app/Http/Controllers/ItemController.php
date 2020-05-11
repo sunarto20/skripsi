@@ -18,7 +18,7 @@ class ItemController extends Controller
     {
         // $items = Item::get();
         $items = Unit::with(['item', 'room'])->groupBy('item_id')->get();
-        return $items;
+        //return $items;
         // return view('item.index');
     }
 

@@ -85,8 +85,12 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = Unit::where('item_id', $id)->with(['item', 'room'])->get();
-        return $item;
+
+        $item = Item::where('id', $id)->with(['unit', 'unit.room'])->first();
+
+        // return $item;
+
+
         return view('item.detail', ['item' => $item]);
     }
 

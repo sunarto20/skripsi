@@ -12,7 +12,7 @@
             </h1>
         </div><!-- /.page-header -->
         {{-- <div class="hr dotted"></div> --}}
-                
+
         <div>
             <div id="user-profile-1" class="user-profile row">
                 <div class="col-xs-12 col-sm-3 center">
@@ -21,15 +21,7 @@
                             <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('assets/images/avatars/profile-pic.jpg')}}" />
                         </span>
                         <div class="space-4"></div>
-                        <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                            <div class="inline position-relative">
-                                <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ace-icon fa fa-circle light-green"></i>
-                                    &nbsp;
-                                    <span class="white">  </span>
-                                </a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -49,7 +41,7 @@
                                 <span class="editable" id="city"> {{$item->spesification}} </span>
                             </div>
                         </div>
-                        
+
                         <div class="profile-info-row">
                             <div class="profile-info-name"> Tanggal di Tambahkan </div>
 
@@ -70,6 +62,49 @@
                 </div>
             </div>
         </div>
+        <div class="space-20"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-small">
+                        <h4 class="widget-title smaller">
+                            <i class="ace-icon fa fa-check-square-o bigger-110"></i>
+                            Tabel keberadaan Barang
+                        </h4>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <table id="example" class="table table-hover table-bordered" width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th width="25">#</th>
+                                        <th>Nomor Barang</th>
+                                        <th>Lokasi</th>
+                                        <th>Keterangan</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($item->unit as $unit)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$unit->number_unit}}</a></td>
+                                            <td>{{$unit->room->name}}</td>
+                                            <td><span class="label label-sm label-info arrowed arrowed-righ">Tersedia</span></td>
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- /#home -->
   <!-- PAGE CONTENT ENDS -->
     </div><!-- /.col -->
 </div><!-- /.row -->

@@ -102,7 +102,9 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::where('id', $id)->first();
+        // return $item;
+        return view('item.edit', ['item' => $item]);
     }
 
     /**
@@ -114,7 +116,18 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+
+            'name' => 'required|min:3',
+            'spesification' => 'required',
+
+        ]);
+
+        Item::where('id', $id)->update([
+            'name' => $request->name,
+            'spesification' => $request->spesification
+        ]);
+        return redirect()->route('item.index')->with('status', 'Barang Berhasil di Ubah!');
     }
 
     /**
@@ -125,6 +138,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::findOrFail($id)->delete();
     }
 }

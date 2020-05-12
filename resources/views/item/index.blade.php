@@ -66,8 +66,8 @@
     function deleteData(id){
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
-        let url1= '{{url('siswa')}}';
-        let url = "{{url('siswa')}}"+'/'+id;
+        let url1= '{{url('barang')}}';
+        let url = "{{url('barang')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
             text: "Anda akan menghapus data ini!",

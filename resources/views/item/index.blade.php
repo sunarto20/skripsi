@@ -27,14 +27,13 @@
                         <th>Spesifikasi</th>
                         <th>Jumlah</th>
                         <th width="10">Aksi</th>
-
                     </tr>
                 </thead>
                 <tbody>
 @foreach ($items as $item)
     <tr>
         <td>{{$loop->iteration}}</td>
-        <td>{{$item->name}}</td>
+        <td><a href="{{route('item.detail',['id'=>$item->id])}}">{{$item->name}}</a></td>
         <td>{{$item->spesification}}</td>
         <td>{{$item->unit_count}}</td>
         <td>

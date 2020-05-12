@@ -55,3 +55,4 @@ Route::post('barang/tambah', 'ItemController@store')->name('item.store');
 
 Route::get('/barang/{id}/edit', 'ItemController@edit')->name('item.edit');
 Route::put('/barang/{id}', 'ItemController@update')->name('item.update');
+Route::get('barang/{id}/details', 'ItemController@show')->name('item.detail');

@@ -74,7 +74,7 @@ class ItemController extends Controller
         };
 
 
-        return Unit::with(['item', 'room'])->get();
+        return redirect()->route('item.index')->with('status', 'Barang Berhasil di tambah');
     }
 
     /**
@@ -85,7 +85,9 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Unit::where('item_id', $id)->with(['item', 'room'])->get();
+        return $item;
+        return view('item.detail', ['item' => $item]);
     }
 
     /**

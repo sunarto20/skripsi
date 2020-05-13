@@ -19,4 +19,8 @@ class Unit extends Model
     {
         return $this->belongsTo(Room::class);
     }
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }

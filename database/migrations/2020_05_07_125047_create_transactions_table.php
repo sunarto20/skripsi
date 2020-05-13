@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('unit_id');
             $table->string('status');
-            $table->string('reciever')->nullable();
+            $table->foreignId('reciever')->nullable();
             $table->longText('notes')->nullable();
             $table->timestamps();
         });

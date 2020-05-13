@@ -62,3 +62,7 @@ Route::delete('barang/{id}', 'ItemController@destroy')->name('item.delete');
 Route::get('/pindah/{id}/pindah/ruangan', 'ItemController@changeroom')->name('item.change.room');
 // Route::get('/pindah/{id}/update', 'ItemController@changeupdate')->name('item.change.get');
 Route::put('pindah/{id}/update', 'ItemController@changeupdate')->name('item.change.update');
+
+
+// Route Borrow
+Route::get('pinjam', 'BorrowController@index')->name('borrow.index');

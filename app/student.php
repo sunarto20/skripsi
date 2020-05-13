@@ -19,4 +19,9 @@ class Student extends Model
     {
         return $this->belongsTo(Classes::class);
     }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }

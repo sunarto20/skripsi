@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route API
+Route::get('siswa/{nisn}', 'ApiController@getStudent')->name('api.student');
+Route::get('unit/{numberUnit}', 'ApiController@getUnit')->name('api.unit');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

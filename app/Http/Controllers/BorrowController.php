@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use App\Transaction;
+use App\Unit;
 use Illuminate\Http\Request;
 
 class BorrowController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +17,9 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Transaction::where('status', 'minjam')->with(['student', 'unit', 'unit.item', 'student.class'])->get();
+        $borrows = Transaction::where('status', 'pinjam')->with(['student', 'unit', 'unit.item', 'student.class'])->get();
         // return $borrows;
-        return view('item.borrow', [
+        return view('borrow.index', [
             'borrows' => $borrows
         ]);
     }
@@ -28,7 +31,12 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        //
+        $units = Unit::with(['item', 'room'])->get();
+        $students = Student::with(['class'])->get();
+        return view('borrow.add', [
+            'units' => $units,
+            'students' => $students
+        ]);
     }
 
     /**
@@ -39,7 +47,18 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'registration_number' => 'required',
+            'number_unit' => 'required'
+        ]);
+
+        Transaction::create([
+            'unit_id' => $request->number_unit,
+            'status' => 'pinjam',
+            'reciever' => $request->registration_number
+        ]);
+
+        return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');
     }
 
     /**

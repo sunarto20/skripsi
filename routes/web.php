@@ -66,9 +66,12 @@ Route::put('pindah/{id}/update', 'ItemController@changeupdate')->name('item.chan
 
 // Route Borrow
 Route::get('pinjam', 'BorrowController@index')->name('borrow.index');
+Route::get('pinjam/tambah', 'BorrowController@create')->name('borrow.create');
+Route::post('pinjam/tambah', 'BorrowController@store')->name('borrow.store');
 
 
 
 
 // Route API
-Route::get('api/siswa', 'ApiController@indexStudent');
+Route::get('api/siswa', 'ApiController@getStudent')->name('api.student');
+Route::get('api/unit', 'ApiController@getUnit')->name('api.unit');

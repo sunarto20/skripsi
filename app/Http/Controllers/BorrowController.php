@@ -14,8 +14,11 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrow = Transaction::where('status', 'minjam')->with(['student', 'unit', 'unit.item'])->get();
-        return $borrow;
+        $borrows = Transaction::where('status', 'minjam')->with(['student', 'unit', 'unit.item', 'student.class'])->get();
+        // return $borrows;
+        return view('item.borrow', [
+            'borrows' => $borrows
+        ]);
     }
 
     /**

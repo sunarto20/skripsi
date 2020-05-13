@@ -140,4 +140,33 @@ class ItemController extends Controller
     {
         Item::findOrFail($id)->delete();
     }
+
+    public function changeroom($id)
+    {
+        $unit = Unit::where('id', $id)->with(['item', 'room'])->first();
+        $rooms = Room::get();
+        return view('item.change', [
+            'unit' => $unit,
+            'rooms' => $rooms
+        ]);
+
+        // return $unit;
+    }
+
+    public function changeupdate(Request $request, $id)
+    {
+        $request->validate([
+            'room' => 'required'
+        ]);
+
+        // $idurl = $this->changeroom($id);
+
+        // echo  $this->changeroom($id);
+
+        Unit::where('id', $id)->update([
+            'room_id' => $request->room
+        ]);
+
+        return redirect()->route('item.index')->with('status', 'Data Berhasil di Update!');
+    }
 }

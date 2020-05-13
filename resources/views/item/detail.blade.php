@@ -4,6 +4,9 @@
 
 <div class="row">
     <div class="col-xs-12">
+        @if (session('status'))
+            <div class="flashdata" data-flashdata="{{session('status')}}"></div>
+        @endif
         <!-- PAGE CONTENT BEGINS -->
         <div class="page-header">
             <h1>
@@ -82,7 +85,7 @@
                                         <th>Nomor Barang</th>
                                         <th>Lokasi</th>
                                         <th>Keterangan</th>
-
+                                        <th width="100">Pindah Ruangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,7 +95,11 @@
                                             <td>{{$unit->number_unit}}</a></td>
                                             <td>{{$unit->room->name}}</td>
                                             <td><span class="label label-sm label-info arrowed arrowed-righ">Tersedia</span></td>
+                                            <td>
+                                                <div class="text-center">
 
+                                                    <a href="{{route('item.change.room',['id'=>$unit->id])}}" class="green"><i class="ace-icon fa fa-exchange"></i></a></td>
+                                                </div>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -119,4 +126,18 @@
 <script src="{{url('assets/js/jquery.easypiechart.min.js')}}"></script>
 <script src="{{url('assets/js/bootstrap-editable.min.js')}}"></script>
 <script src="{{url('assets/js/ace-editable.min.js')}}"></script>
+<script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script>
+<script>
+    // updated and added ruangan
+    const data = $('.flashdata').data('flashdata');
+    if(data){
+        Swal.fire({
+            icon: 'success',
+            title: data,
+            showConfirmButton: true,
+        }).then((isConfirm)=>{
+            if (isConfirm) window.location.reload;
+        })
+    }
+</script>
 @endpush

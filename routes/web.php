@@ -56,4 +56,9 @@ Route::get('/barang/{id}/edit', 'ItemController@edit')->name('item.edit');
 Route::put('/barang/{id}', 'ItemController@update')->name('item.update');
 Route::get('barang/{id}/details', 'ItemController@show')->name('item.detail');
 Route::delete('barang/{id}', 'ItemController@destroy')->name('item.delete');
+
+
 // Route::get('/barang/{id}/edit', 'ItemController@edit')->name('item_edit');
+Route::get('/pindah/{id}/pindah/ruangan', 'ItemController@changeroom')->name('item.change.room');
+// Route::get('/pindah/{id}/update', 'ItemController@changeupdate')->name('item.change.get');
+Route::put('pindah/{id}/update', 'ItemController@changeupdate')->name('item.change.update');

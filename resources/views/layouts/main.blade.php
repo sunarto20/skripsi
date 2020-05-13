@@ -449,7 +449,28 @@
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-balance-scale"></i>
+							<i class="menu-icon fa fa-dropbox"></i>
+							<span class="menu-text">
+								Manajemen Barang
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href=" {{route('student.index')}} ">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Barang Keluar </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-recycle"></i>
 							<span class="menu-text">
 								Data Transaksi
 							</span>
@@ -459,18 +480,23 @@
 
 						<b class="arrow"></b>
 						<ul class="submenu">
-
 							<li class="">
-								<a href="typography.html">
+								<a href=" {{route('class.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Peminjaman Barang
+									<span class="menu-text"> Peminjaman Barang </span>
 								</a>
-
 								<b class="arrow"></b>
 							</li>
-
+							<li class="">
+								<a href=" {{route('student.index')}} ">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Pengembalian Barang </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
 						</ul>
 					</li>
+					
 					<li class="">
 						<a href="index.html">
 							<i class="menu-icon fa fa-tachometer"></i>

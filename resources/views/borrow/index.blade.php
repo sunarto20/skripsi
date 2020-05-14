@@ -36,15 +36,15 @@
                     @foreach ($borrows as $borrow)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td><a href="{{route('item.detail',['id'=>$borrow->unit->item->id])}}">{{$borrow->unit->item->name}}</a></td>
-                            <td>{{$borrow->unit->number_unit}}</td>
-                            <td>{{$borrow->student->name}}</td>
-                            <td>{{$borrow->student->class->name}}</td>
-                            <td>{{$borrow->student->class->name}}</td>
-                            <td>{{$borrow->student->class->name}}</td>
+                            <td><a href="{{route('item.detail',['id'=>$borrow->transaction->unit->item->id])}}">{{$borrow->transaction->unit->item->name}}</a></td>
+                            <td>{{$borrow->transaction->unit->number_unit}}</td>
+                            <td>{{$borrow->transaction->student->name}}</td>
+                            <td>{{$borrow->transaction->student->class->name}}</td>
+                            <td>{{$borrow->created_at}}</td>
+                            <td>{{$borrow->transaction->student->class->name}}</td>
                             <td>
                                 <div class="text-center">
-                                    <a class="green" href=" { ">
+                                    <a class="green" href="  ">
                                         <i class="ace-icon fa fa-pencil "></i>
                                     </a>
                                     <a class="red tombol-hapus"  onclick="deleteData('')"><i class="ace-icon fa fa-trash"></i>

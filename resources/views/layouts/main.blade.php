@@ -481,7 +481,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href=" {{route('class.index')}} ">
+								<a href=" {{route('borrow.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Peminjaman Barang </span>
 								</a>
@@ -496,7 +496,7 @@
 							</li>
 						</ul>
 					</li>
-					
+
 					<li class="">
 						<a href="index.html">
 							<i class="menu-icon fa fa-tachometer"></i>

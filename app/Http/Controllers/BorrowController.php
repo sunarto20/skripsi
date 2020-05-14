@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Transaction;
+use App\Transaction_detail;
 use App\Unit;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,18 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Transaction::where('status', 'pinjam')->with(['student', 'unit', 'unit.item', 'student.class'])->get();
-        // return $borrows;
+        // $borrows = Transaction_detail::with(['transaction', 'transaction.unit', 'transaction.student', 'transaction.student.class', 'transaction.unit.item'])
+        //     ->where('status', 'pinjam')
+        //     ->get();
+        // $transactionId = $borrows[0]['transaction']['id'];
+        // $return = Transaction_detail::with('transaction')->where('transaction_id', $transactionId)->where('status', 'return')->get();
+        // // return $borrows->transaction->id;
+        // // return collect($borrows)->merge($return);
+        // // return $borrows[0]['transaction']['id'];
+        // return collect($borrows)->merge($return);
+
+        $borrows = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class'])->get();
+        return $borrows;
         return view('borrow.index', [
             'borrows' => $borrows
         ]);
@@ -52,10 +63,16 @@ class BorrowController extends Controller
             'number_unit' => 'required'
         ]);
 
-        Transaction::create([
+
+
+        $transaction = Transaction::create([
             'unit_id' => $request->number_unit,
-            'status' => 'pinjam',
             'reciever' => $request->registration_number
+        ]);
+
+        Transaction_detail::create([
+            'transaction_id' => $transaction->id,
+            'status' => 'pinjam'
         ]);
 
         return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');

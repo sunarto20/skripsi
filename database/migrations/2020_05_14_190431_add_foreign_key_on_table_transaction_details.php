@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionsTable extends Migration
+class AddForeignKeyOnTableTransactionDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('unit_id');
-            $table->foreignId('reciever')->nullable();
-            $table->longText('notes')->nullable();
-            $table->timestamps();
+        Schema::table('transaction_details', function (Blueprint $table) {
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
         });
     }
 
@@ -29,6 +25,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        //
     }
 }

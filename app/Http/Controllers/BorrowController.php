@@ -32,9 +32,15 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        $units = Unit::with(['item', 'room'])->get();
-        // $units = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->get();
-        // return $units;
+        // $units = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereHas('transaction.transaction_detail', function ($query) {
+        //     $query->where('status', '!=', 'pinjam');
+        // })->get();
+        $units = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereHas('transaction.transaction_detail', function ($q) {
+            $q->where('status', '!=', 'pinjam');
+        })->get();
+        // $units = Unit::with(['item', 'room'])->get();
+
+        return $units;
         $students = Student::with(['class'])->get();
         return view('borrow.add', [
             'units' => $units,

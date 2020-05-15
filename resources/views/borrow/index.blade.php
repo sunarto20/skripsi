@@ -10,8 +10,11 @@
         @endif
             <div class="clearfix">
                 <div class="pull-right  "style="margin-bottom:8px !important">
-                    <a href="" class="btn btn-sm btn-success">
+                    <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus"> Tambah Data</i>
+                    </a>
+                    <a href="{{route('borrow.create')}}" class="btn btn-sm btn-danger">
+                        <i class="fa fa-plus">Kembalikan Barang</i>
                     </a>
                 </div>
             </div>
@@ -36,16 +39,22 @@
                     @foreach ($borrows as $borrow)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td><a href="{{route('item.detail',['id'=>$borrow->transaction->unit->item->id])}}">{{$borrow->transaction->unit->item->name}}</a></td>
-                            <td>{{$borrow->transaction->unit->number_unit}}</td>
-                            <td>{{$borrow->transaction->student->name}}</td>
-                            <td>{{$borrow->transaction->student->class->name}}</td>
-                            <td>{{$borrow->created_at}}</td>
-                            <td>{{$borrow->transaction->student->class->name}}</td>
+                            <td><a href="{{route('item.detail',['id'=>$borrow->unit->item->id])}}">{{$borrow->unit->item->name}}</a></td>
+                            <td>{{$borrow->unit->number_unit}}</td>
+                            <td><a href="{{route('student.detail',['id'=>$borrow->student->id])}}">{{$borrow->student->name}}</a></td>
+                            <td>{{$borrow->student->class->name}}</td>
+                            <td>{{ date('d M Y H:i:s',strtotime($borrow->status_pinjam)) }}</td>
+                            <td>
+                                @if ($borrow->status_return != null)
+                                <span class="label label-success arrowed arrowed-in-right">{{date('d M Y H:i:s',strtotime($borrow->status_return))}}</span>                         
+                                @else
+                                    <span class="label label-danger arrowed-in arrowed-in-right">belum di kembalikan</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="text-center">
-                                    <a class="green" href="  ">
-                                        <i class="ace-icon fa fa-pencil "></i>
+                                    <a class="yellow" href=" {{route('borrow.detail',['id'=>$borrow->id])}} ">
+                                        <i class="ace-icon fa fa-eye "></i>
                                     </a>
                                     <a class="red tombol-hapus"  onclick="deleteData('')"><i class="ace-icon fa fa-trash"></i>
                                     </a>

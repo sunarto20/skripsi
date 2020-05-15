@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use App\Transaction;
 use App\Transaction_detail;
-use App\Unit;
 use Illuminate\Http\Request;
 
-class BorrowController extends Controller
+class ReturnController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +15,11 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->get();
-        // return $borrows;
-        return view('borrow.index', [
-            'borrows' => $borrows
-        ]);
+        $returns = $borrows = Transaction_detail::with(['transaction', 'transaction.unit', 'transaction.unit.item', 'transaction.student', 'transaction.student.class'])->where('status', 'return')->get();
+        // return $returns;
+
+
+        return view('return.index')->withReturns($returns);
     }
 
     /**
@@ -32,14 +29,7 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        $units = Unit::with(['item', 'room'])->get();
-        // $units = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->get();
-        // return $units;
-        $students = Student::with(['class'])->get();
-        return view('borrow.add', [
-            'units' => $units,
-            'students' => $students
-        ]);
+        //
     }
 
     /**
@@ -50,22 +40,7 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'registration_number' => 'required',
-            'number_unit' => 'required'
-        ]);
-
-        $transaction = Transaction::create([
-            'unit_id' => $request->number_unit,
-            'reciever' => $request->registration_number
-        ]);
-
-        Transaction_detail::create([
-            'transaction_id' => $transaction->id,
-            'status' => 'pinjam'
-        ]);
-
-        return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');
+        //
     }
 
     /**

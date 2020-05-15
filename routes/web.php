@@ -68,3 +68,10 @@ Route::put('pindah/{id}/update', 'ItemController@changeupdate')->name('item.chan
 Route::get('pinjam', 'BorrowController@index')->name('borrow.index');
 Route::get('pinjam/tambah', 'BorrowController@create')->name('borrow.create');
 Route::post('pinjam/tambah', 'BorrowController@store')->name('borrow.store');
+Route::get('pinjam/{id}/detail', 'BorrowController@show')->name('borrow.detail');
+
+
+
+
+// Route Return
+Route::get('kembali', 'ReturnController@index')->name('return.index');

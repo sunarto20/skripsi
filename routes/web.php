@@ -75,3 +75,9 @@ Route::get('pinjam/{id}/detail', 'BorrowController@show')->name('borrow.detail')
 
 // Route Return
 Route::get('kembali', 'ReturnController@index')->name('return.index');
+Route::put('kembali/{id}', 'ReturnController@update')->name('return.update');
+
+
+
+// tes
+Route::get('tes', 'BorrowController@tes');

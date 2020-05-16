@@ -39,7 +39,7 @@
                     <td>{{$return->transaction->unit->number_unit}}</td>
                     <td><a href="">{{$return->transaction->student->name}}</a></td>
                     <td>{{$return->transaction->student->class->name}}</td>
-                    <td>{{ date('d M Y H:i:s',strtotime($return->created_at)) }}</td>
+                    <td>{{ date('d M Y H:i:s',strtotime($return->returned_at)) }}</td>
                     <td>
                         <div class="text-center">
                             <a class="yellow" href="  ">

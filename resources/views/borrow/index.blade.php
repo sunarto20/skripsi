@@ -13,9 +13,7 @@
                     <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus"> Tambah Data</i>
                     </a>
-                    <a href="{{route('borrow.create')}}" class="btn btn-sm btn-danger">
-                        <i class="fa fa-plus">Kembalikan Barang</i>
-                    </a>
+                   
                 </div>
             </div>
             <div class="table-header no-margin-top">
@@ -52,12 +50,17 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="text-center">
+                                <div class="text-left">
                                     <a class="yellow" href=" {{route('borrow.detail',['id'=>$borrow->id])}} ">
                                         <i class="ace-icon fa fa-eye "></i>
                                     </a>
-                                    <a class="red tombol-hapus"  onclick="deleteData('')"><i class="ace-icon fa fa-trash"></i>
+                                    <a class="red tombol-hapus"  onclick="deleteData('{{$borrow->id}}')"><i class="ace-icon fa fa-trash"></i>
                                     </a>
+                                    @if ($borrow->status_return == null)
+                                        
+                                    <a class="green" onclick="returnItem('{{$borrow->id}}')" ><span class="tooltip-success" data-rel="tooltip" data-placement="bottom" title="kembalikan barang"><i class="fa fa-undo"></i></span></i>
+                                    </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -81,8 +84,8 @@
     function deleteData(id){
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
-        let url1= '{{url('barang')}}';
-        let url = "{{url('barang')}}"+'/'+id;
+        let url1= '{{url('pinjam')}}';
+        let url = "{{url('kembali')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
             text: "Anda akan menghapus data ini!",
@@ -113,6 +116,40 @@
         });
     }
 
+    function returnItem(id){
+        let csrf_token =$('meta[name="csrf-token"]').attr('content');
+        let url1= '{{url('pinjam')}}';
+        let url = "{{url('kembali')}}"+'/'+id;
+        Swal.fire({
+            title: 'Anda akan mengembalikan barang ini',
+            text: "Pastikan barang yang anda terima sudah sesuai",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url,
+                    type:"POST",
+                    data: {'_method':'PUT', '_token':csrf_token},
+                    success: (data)=>{
+                        Swal.fire(
+                            'Berhasil',
+                            'Data berhasil di dikembalikan.',
+                            'success'
+                        ).then((isConfirm) => {
+                            if(isConfirm) window.location = url1;
+                        });
+                    },
+
+                });
+            }
+        });
+    }
+
 
 
 </script>
@@ -128,5 +165,10 @@
             if (isConfirm) window.location.reload;
         })
     }
+
+    jQuery(function($){
+        $('[data-rel=tooltip]').tooltip();
+				$('[data-rel=popover]').popover({html:true});
+    })
 </script>
 @endpush

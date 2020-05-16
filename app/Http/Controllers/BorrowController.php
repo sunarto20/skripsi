@@ -35,12 +35,17 @@ class BorrowController extends Controller
         // $units = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereHas('transaction.transaction_detail', function ($query) {
         //     $query->where('status', '!=', 'pinjam');
         // })->get();
-        $units = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereHas('transaction.transaction_detail', function ($q) {
-            $q->where('status', '!=', 'pinjam');
-        })->get();
-        // $units = Unit::with(['item', 'room'])->get();
+        // $units = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereHas('transaction.transaction_detail', function ($q) {
+        //     $q->where('status', '!=', 'pinjam');
+        // })->get();
+        $units = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
+            ->whereDoesntHave('transaction_detail', function ($q) {
+                $q->where('returned_at', null);
+            })->whereDoesntHave('transaction_detail', function ($query) {
+                $query->where('status', 'exit');
+            })->get();
 
-        return $units;
+        // return $units;
         $students = Student::with(['class'])->get();
         return view('borrow.add', [
             'units' => $units,
@@ -117,5 +122,32 @@ class BorrowController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function tes()
+    {
+
+        // $tes = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])
+        //     ->orWhereDoesntHave('transaction')
+        //     ->orWhereDoesntHave('transaction.transaction_detail', function ($q) {
+        //         $q->where('status', '!=', 'pinjam');
+        //     })->get();
+        // return $tes;
+
+        $tes = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
+            ->whereDoesntHave('transaction_detail', function ($q) {
+                $q->where('returned_at', null);
+            })->whereDoesntHave('transaction_detail', function ($query) {
+                $query->where('status', 'exit');
+            })->get();
+        // return $tes;
+        return $tes;
+
+
+        // $tes = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereDoesntHave('transaction.transaction_detail', function ($q) {
+        //     $q->where('status', '!=', 'pinjam');
+        // })->get();
+        // return $tes;
     }
 }

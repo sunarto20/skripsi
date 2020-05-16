@@ -488,7 +488,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href=" {{route('student.index')}} ">
+								<a href=" {{route('return.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Pengembalian Barang </span>
 								</a>

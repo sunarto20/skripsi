@@ -34,7 +34,7 @@ class Transaction extends Model
 
     public function getStatusReturnAttribute()
     {
-        $tanggal_kembali = $this->transaction_detail()->where('status', 'return')->first();
+        $tanggal_kembali = $this->transaction_detail()->where('returned_at', '!=', null)->first();
 
         return $tanggal_kembali->created_at ?? null;
     }

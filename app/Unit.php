@@ -23,4 +23,9 @@ class Unit extends Model
     {
         return $this->hasOne(Transaction::class);
     }
+
+    public function transaction_detail()
+    {
+        return $this->hasManyThrough(Transaction_detail::class, Transaction::class);
+    }
 }

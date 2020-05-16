@@ -18,6 +18,7 @@ class CreateTablesTransactionDetails extends Migration
             $table->foreignId('transaction_id');
             $table->string('status');
             $table->text('notes')->nullable();
+            $table->dateTime('returned_at')->nullable();
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class ReturnController extends Controller
      */
     public function index()
     {
-        $returns = $borrows = Transaction_detail::with(['transaction', 'transaction.unit', 'transaction.unit.item', 'transaction.student', 'transaction.student.class'])->where('status', 'return')->get();
+        $returns  = Transaction_detail::with(['transaction', 'transaction.unit', 'transaction.unit.item', 'transaction.student', 'transaction.student.class'])->where('returned_at', '!=', null)->get();
         // return $returns;
-
+        // return $returns;
 
         return view('return.index')->withReturns($returns);
     }
@@ -74,7 +74,11 @@ class ReturnController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Transaction_detail::where('id', $id)->update([
+            'returned_at' => date("Y-m-d H:i:s")
+        ]);
+
+        return redirect()->route('borrow.index')->with('status', 'Barang sudah di kembalikan!');
     }
 
     /**

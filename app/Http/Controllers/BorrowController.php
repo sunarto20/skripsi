@@ -18,7 +18,9 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->get();
+        $borrows = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->whereDoesntHave('transaction_detail', function ($q) {
+            $q->where('status', 'exit');
+        })->get();
         // return $borrows;
         return view('borrow.index', [
             'borrows' => $borrows
@@ -135,14 +137,24 @@ class BorrowController extends Controller
         //     })->get();
         // return $tes;
 
-        $tes = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
-            ->whereDoesntHave('transaction_detail', function ($q) {
-                $q->where('returned_at', null);
-            })->whereDoesntHave('transaction_detail', function ($query) {
-                $query->where('status', 'exit');
-            })->get();
+        // $tes = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
+        //     ->whereDoesntHave('transaction_detail', function ($q) {
+        //         $q->where('returned_at', null);
+        //     })->whereDoesntHave('transaction_detail', function ($query) {
+        //         $query->where('status', 'exit');
+        //     })->get();
         // return $tes;
-        return $tes;
+
+        $transaction = Transaction::create([
+            'unit_id' => 8,
+
+        ]);
+
+        Transaction_detail::create([
+            'transaction_id' => $transaction->id,
+            'status' => 'exit'
+        ]);
+
 
 
         // $tes = Unit::with(['item', 'room', 'transaction', 'transaction.transaction_detail'])->whereDoesntHave('transaction.transaction_detail', function ($q) {

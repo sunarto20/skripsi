@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes;
 use \App\Student;
+use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -86,9 +87,18 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::with(['user', 'class'])->where('id', $id)->get();
+        $student = Student::with(['user', 'class'])->where('id', $id)->first();
+        $histories = Unit::with(['item', 'room', 'transaction', 'transaction_detail', 'transaction.student'])
+            ->whereHas('transaction', function ($q) use ($id) {
+                $q->where('reciever', $id);
+            })->get();
+        // return $histories;
+
         // $student = response()->json($student);
-        return view('student.detail', ['student' => $student]);
+        return view('student.detail', [
+            'student' => $student,
+            'histories' => $histories
+        ]);
     }
 
     /**

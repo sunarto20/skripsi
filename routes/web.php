@@ -69,6 +69,7 @@ Route::get('pinjam', 'BorrowController@index')->name('borrow.index');
 Route::get('pinjam/tambah', 'BorrowController@create')->name('borrow.create');
 Route::post('pinjam/tambah', 'BorrowController@store')->name('borrow.store');
 Route::get('pinjam/{id}/detail', 'BorrowController@show')->name('borrow.detail');
+Route::delete('pinjam/{id}', 'BorrowController@destroy')->name('borrow.destroy');
 
 
 
@@ -78,6 +79,9 @@ Route::get('kembali', 'ReturnController@index')->name('return.index');
 Route::put('kembali/{id}', 'ReturnController@update')->name('return.update');
 
 
-
+// Route Exit
+Route::get('keluar', 'ExitItemController@index')->name('exit.index');
+Route::get('keluar/tambah', 'ExitItemController@create')->name('exit.create');
+Route::post('keluar/tambah', 'ExitItemController@store')->name('exit.store');
 // tes
 Route::get('tes', 'BorrowController@tes');

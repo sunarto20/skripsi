@@ -460,7 +460,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href=" {{route('student.index')}} ">
+								<a href=" {{route('exit.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Barang Keluar </span>
 								</a>

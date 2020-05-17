@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use App\Transaction;
 use App\Transaction_detail;
 use App\Unit;
 use Illuminate\Http\Request;
 
-class BorrowController extends Controller
+class ExitItemController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +16,11 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Transaction::with(['transaction_detail', 'unit', 'student', 'student.class', 'unit.item'])->whereDoesntHave('transaction_detail', function ($q) {
-            $q->where('status', 'exit');
+        $exits = Unit::with(['transaction', 'transaction_detail', 'item', 'room'])->whereHas('transaction_detail', function ($q) {
+            $q->where('status', 'exit')->limit(1);
         })->get();
-        // return $borrows;
-        return view('borrow.index', [
-            'borrows' => $borrows
-        ]);
+        // return $exits;
+        return view('exit.index', ['exits' => $exits]);
     }
 
     /**
@@ -34,18 +30,12 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        $units = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
-            ->whereDoesntHave('transaction_detail', function ($q) {
-                $q->where('returned_at', null);
-            })->whereDoesntHave('transaction_detail', function ($query) {
-                $query->where('status', 'exit');
-            })->get();
-
-        $students = Student::with(['class'])->get();
-        return view('borrow.add', [
-            'units' => $units,
-            'students' => $students
-        ]);
+        $units = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])->whereDoesntHave('transaction_detail', function ($q) {
+            $q->where('returned_at', null);
+        })->whereDoesntHave('transaction_detail', function ($query) {
+            $query->where('status', 'exit');
+        })->get();
+        return view('exit.add', ['units' => $units]);
     }
 
     /**
@@ -57,21 +47,21 @@ class BorrowController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'registration_number' => 'required',
-            'number_unit' => 'required'
+            'number_unit' => 'required',
+            'notes' => 'required'
         ]);
 
         $transaction = Transaction::create([
             'unit_id' => $request->number_unit,
-            'reciever' => $request->registration_number
         ]);
 
         Transaction_detail::create([
             'transaction_id' => $transaction->id,
-            'status' => 'pinjam'
+            'status' => 'exit',
+            'notes' => $request->notes
         ]);
 
-        return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');
+        return redirect()->route('exit.index')->with('status', 'Barang Berhasil Di Keluarkan');
     }
 
     /**
@@ -116,20 +106,6 @@ class BorrowController extends Controller
      */
     public function destroy($id)
     {
-        Transaction::findOrFail($id)->delete();
-    }
-
-
-    public function tes()
-    {
-        $transaction = Transaction::create([
-            'unit_id' => 8,
-
-        ]);
-
-        Transaction_detail::create([
-            'transaction_id' => $transaction->id,
-            'status' => 'exit'
-        ]);
+        //
     }
 }

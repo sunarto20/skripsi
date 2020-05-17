@@ -13,7 +13,7 @@
                     <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus"> Tambah Data</i>
                     </a>
-                   
+
                 </div>
             </div>
             <div class="table-header no-margin-top">
@@ -44,7 +44,7 @@
                             <td>{{ date('d M Y H:i:s',strtotime($borrow->status_pinjam)) }}</td>
                             <td>
                                 @if ($borrow->status_return != null)
-                                <span class="label label-success arrowed arrowed-in-right">{{date('d M Y H:i:s',strtotime($borrow->status_return))}}</span>                         
+                                <span class="label label-success arrowed arrowed-in-right">{{date('d M Y H:i:s',strtotime($borrow->status_return))}}</span>
                                 @else
                                     <span class="label label-danger arrowed-in arrowed-in-right">belum di kembalikan</span>
                                 @endif
@@ -57,7 +57,7 @@
                                     <a class="red tombol-hapus"  onclick="deleteData('{{$borrow->id}}')"><i class="ace-icon fa fa-trash"></i>
                                     </a>
                                     @if ($borrow->status_return == null)
-                                        
+
                                     <a class="green" onclick="returnItem('{{$borrow->id}}')" ><span class="tooltip-success" data-rel="tooltip" data-placement="bottom" title="kembalikan barang"><i class="fa fa-undo"></i></span></i>
                                     </a>
                                     @endif
@@ -85,10 +85,10 @@
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
         let url1= '{{url('pinjam')}}';
-        let url = "{{url('kembali')}}"+'/'+id;
+        let url = "{{url('pinjam')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',
-            text: "Anda akan menghapus data ini!",
+            text: "Anda akan menghapus data ini!"+id,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

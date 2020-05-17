@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class UnitController extends Controller
 {
@@ -80,5 +81,12 @@ class UnitController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tesPdf()
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>')->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }

@@ -84,4 +84,4 @@ Route::get('keluar', 'ExitItemController@index')->name('exit.index');
 Route::get('keluar/tambah', 'ExitItemController@create')->name('exit.create');
 Route::post('keluar/tambah', 'ExitItemController@store')->name('exit.store');
 // tes
-Route::get('tes', 'BorrowController@tes');
+Route::get('tes', 'UnitCOntroller@tesPdf');

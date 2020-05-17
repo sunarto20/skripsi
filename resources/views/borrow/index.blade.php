@@ -14,7 +14,6 @@
                 <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
                     <i class="fa fa-plus"> Tambah Data</i>
                 </a>
-
             </div>
         </div>
 
@@ -59,9 +58,7 @@
                                     <a class="red tombol-hapus"  onclick="deleteData('{{$borrow->id}}')"><i class="ace-icon fa fa-trash"></i>
                                     </a>
                                     @if ($borrow->status_return == null)
-
-                                    <a class="green" onclick="returnItem('{{$borrow->id}}')" ><span class="tooltip-success" data-rel="tooltip" data-placement="bottom" title="kembalikan barang"><i class="fa fa-undo"></i></span></i>
-                                    </a>
+                                        <a class="green" onclick="returnItem('{{$borrow->id}}')" ><span class="tooltip-success" data-rel="tooltip" data-placement="bottom" title="kembalikan barang"><i class="fa fa-undo"></i></span></i></a>
                                     @endif
                                 </div>
                             </td>
@@ -151,8 +148,6 @@
         });
     }
 
-
-
 </script>
 <script>
     // updated and added ruangan
@@ -169,7 +164,7 @@
 
     jQuery(function($){
         $('[data-rel=tooltip]').tooltip();
-				$('[data-rel=popover]').popover({html:true});
+		$('[data-rel=popover]').popover({html:true});
     })
 </script>
 @endpush

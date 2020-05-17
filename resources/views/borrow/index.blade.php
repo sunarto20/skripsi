@@ -8,17 +8,19 @@
         @if (session('status'))
             <div class="flashdata" data-flashdata="{{session('status')}}"></div>
         @endif
-            <div class="clearfix">
-                <div class="pull-right  "style="margin-bottom:8px !important">
-                    <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
-                        <i class="fa fa-plus"> Tambah Data</i>
-                    </a>
 
-                </div>
+        <div class="clearfix">
+            <div class="pull-right  "style="margin-bottom:8px !important">
+                <a href="{{route('borrow.create')}}" class="btn btn-sm btn-success">
+                    <i class="fa fa-plus"> Tambah Data</i>
+                </a>
+
             </div>
-            <div class="table-header no-margin-top">
-                Data Peminjaman Barang
-            </div>
+        </div>
+
+        <div class="table-header no-margin-top">
+            Data Peminjaman Barang
+        </div>
 
             <table id="example" class="table table-hover table-bordered" width="100%" >
                 <thead>
@@ -67,7 +69,6 @@
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
 <!-- PAGE CONTENT ENDS -->

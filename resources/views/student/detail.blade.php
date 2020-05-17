@@ -8,11 +8,8 @@
         <div class="page-header">
             <h1>
                 User Profile Page
-
             </h1>
         </div><!-- /.page-header -->
-        {{-- <div class="hr dotted"></div> --}}
-
         <div>
             <div id="user-profile-1" class="user-profile row">
                 <div class="col-xs-12 col-sm-3 center">
@@ -96,58 +93,54 @@
                 </div>
             </div>
         </div>
+        <div class="space-20"></div>
+        <div class="space-20"></div>
+        <div class="widget-box transparent">
+            <div class="widget-header widget-header-small">
+                <h4 class="widget-title blue smaller">
+                    <i class="ace-icon fa fa-rss orange"></i>
+                    Histori Peminjaman Barang
+                </h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main padding-8">
+                    <div id="profile-feed-1" class="profile-feed">
+                        <table id="example" class="table table-hover table-bordered" width="100%" >
+                            <thead>
+                                <tr>
+                                    <th width="25">#</th>
+                                    <th>Nama Barang</th>
+                                    <th>Nomor Barang</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
 
-
-                <div class="space-20"></div>
-                <div class="space-20"></div>
-
-                <div class="widget-box transparent">
-                    <div class="widget-header widget-header-small">
-                        <h4 class="widget-title blue smaller">
-                            <i class="ace-icon fa fa-rss orange"></i>
-                            Histori Peminjaman Barang
-                        </h4>
-
-                    </div>
-
-                    <div class="widget-body">
-                        <div class="widget-main padding-8">
-                            <div id="profile-feed-1" class="profile-feed">
-                                <table id="example" class="table table-hover table-bordered" width="100%" >
-                                    <thead>
-                                        <tr>
-                                            <th width="25">#</th>
-                                            <th>Nama Barang</th>
-                                            <th>Nomor Barang</th>
-                                            <th>Tanggal Pinjam</th>
-                                            <th>Tanggal Kembali</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($histories as $history)
-
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$history->item->name}}</td>
-                                            <td>{{$history->number_unit}}</td>
-                                            <td>{{date('d M Y H:i:s',strtotime($history->transaction_detail[0]['created_at']))}}</td>
-                                            <td>
-                                                @if ($history->transaction_detail[0]['returned_at']!=null)
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($histories as $history)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$history->item->name}}</td>
+                                        <td>{{$history->number_unit}}</td>
+                                        <td>{{date('d M Y H:i:s',strtotime($history->transaction_detail[0]['created_at']))}}</td>
+                                        <td>
+                                            @if ($history->transaction_detail[0]['returned_at']!=null)
                                                 <span class="label label-success arrowed arrowed-in-right">
-                                                {{date('d M Y H:i:s', strtotime($history->transaction_detail[0]['returned_at']))}}</span></td>
-                                                @else
+                                                {{date('d M Y H:i:s', strtotime($history->transaction_detail[0]['returned_at']))}}</span>
+                                            @else
                                                 <span class="label label-danger arrowed-in arrowed-in-right">belum di kembalikan</span>
-                                                @endif
-                                        </tr>
-                                        @endforeach
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div></div>
-  <!-- PAGE CONTENT ENDS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PAGE CONTENT ENDS -->
     </div><!-- /.col -->
 </div><!-- /.row -->
 @endsection

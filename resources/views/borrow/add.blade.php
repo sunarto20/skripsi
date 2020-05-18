@@ -99,7 +99,6 @@
     //coba pake on change dulu ya
     $('#nis').on('change', function() {
         let studentId = $('#nis').val();
-
         $.ajax({
             url: `/api/siswa/${studentId}`,
             method: 'GET',

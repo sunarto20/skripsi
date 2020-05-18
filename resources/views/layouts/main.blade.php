@@ -498,12 +498,39 @@
 					</li>
 
 					<li class="">
-						<a href="index.html">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Laporan </span>
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-print"></i>
+							<span class="menu-text">
+								Laporan - laporan
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
 						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href=" {{route('borrow.index')}} ">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Laporan Data Barang </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href=" {{route('return.index')}} ">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Laporan Peminjaman Barang </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href=" {{route('return.index')}} ">
+									<i class="menu-icon fa fa-caret-right"></i>
+									<span class="menu-text"> Laporan Barang Keluar </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
 			</div>

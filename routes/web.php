@@ -83,5 +83,11 @@ Route::put('kembali/{id}', 'ReturnController@update')->name('return.update');
 Route::get('keluar', 'ExitItemController@index')->name('exit.index');
 Route::get('keluar/tambah', 'ExitItemController@create')->name('exit.create');
 Route::post('keluar/tambah', 'ExitItemController@store')->name('exit.store');
+
+// Route Report
+Route::get('laporan/item', 'ReportController@reportItemIndex')->name('report.item.index');
+Route::post('laporan/item/cetak', 'ReportController@reportItem')->name('report.item');
+Route::get('laporan/item/cetak', 'ReportController@reportItem')->name('report.item');
+// Route::post('laporan/item', 'ReportController@reportItem')->name('report.siswwa');
 // tes
 Route::get('tes', 'UnitCOntroller@tesPdf');

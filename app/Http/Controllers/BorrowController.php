@@ -6,7 +6,10 @@ use App\Student;
 use App\Transaction;
 use App\Transaction_detail;
 use App\Unit;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BorrowController extends Controller
 {
@@ -35,11 +38,12 @@ class BorrowController extends Controller
     public function create()
     {
         $units = Unit::with(['item', 'room', 'transaction', 'transaction_detail'])
-            ->whereDoesntHave('transaction_detail', function ($q) {
-                $q->where('returned_at', null);
-            })->whereDoesntHave('transaction_detail', function ($query) {
-                $query->where('status', 'exit');
+            ->whereDoesntHave('transaction_detail', function ($query) {
+                $query->where('returned_at', null);
+                $query->orWhere('status', 'exit');
             })->get();
+
+
 
         $students = Student::with(['class'])->get();
         return view('borrow.add', [
@@ -54,24 +58,35 @@ class BorrowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request ...$request)
     {
         $request->validate([
             'registration_number' => 'required',
             'number_unit' => 'required'
         ]);
 
-        $transaction = Transaction::create([
-            'unit_id' => $request->number_unit,
-            'reciever' => $request->registration_number
-        ]);
+        try {
+            DB::transaction();
 
-        Transaction_detail::create([
-            'transaction_id' => $transaction->id,
-            'status' => 'pinjam'
-        ]);
+            $transaction = Transaction::create([
+                'unit_id' => $request->number_unit,
+                'reciever' => $request->registration_number
+            ]);
 
-        return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');
+            throw new Exception('error');
+
+            Transaction_detail::create([
+                'transaction_id' => $transaction->id,
+                'status' => 'pinjam'
+            ]);
+            DB::commit();
+
+            return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            throw $e;
+        }
     }
 
     /**
@@ -116,7 +131,13 @@ class BorrowController extends Controller
      */
     public function destroy($id)
     {
-        Transaction::findOrFail($id)->delete();
+        try {
+            Transaction::findOrFail($id)->delete();
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Trnasactionnya gaada'], 404);
+
+            throw $e;
+        }
     }
 
 

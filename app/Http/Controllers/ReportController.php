@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function reportItem(Request $request)
     {
         $item = new Item;
-        $item = $item->with(['']);
+        $item = $item->with(['unit', 'unit.room']);
         $date = $request->date;
 
         if ($date) {
@@ -28,7 +28,8 @@ class ReportController extends Controller
         }
 
         $item = $item->get();
-
-        return response()->json($item);
+        // return $item;
+        // return response()->json($item);
+        return view('tes', ['item' => $item]);
     }
 }

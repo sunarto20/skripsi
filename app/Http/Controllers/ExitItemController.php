@@ -19,7 +19,8 @@ class ExitItemController extends Controller
         $exits = Unit::with(['transaction', 'transaction_detail', 'item', 'room'])->whereHas('transaction_detail', function ($q) {
             $q->where('status', 'exit')->limit(1);
         })->get();
-        // return $exits;
+
+
         return view('exit.index', ['exits' => $exits]);
     }
 

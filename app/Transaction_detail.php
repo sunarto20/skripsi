@@ -15,6 +15,11 @@ class Transaction_detail extends Model
         return $this->belongsTo(Transaction::class);
     }
 
+    public function getExitTransaction($query)
+    {
+        return $query->where('status', 'exit')->first();
+    }
+
     public function unit()
     {
         return $this->belongsToMany(Unit::class);

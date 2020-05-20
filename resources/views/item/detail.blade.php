@@ -94,7 +94,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$unit->number_unit}}</a></td>
                                             <td>{{$unit->room->name}}</td>
-                                            <td><span class="label label-sm label-info arrowed arrowed-righ">Tersedia</span></td>
+                                            <td><span class="label label-sm label-info arrowed arrowed-righ">{{ $unit->status }}</span></td>
                                             <td>
                                                 <div class="text-center">
 

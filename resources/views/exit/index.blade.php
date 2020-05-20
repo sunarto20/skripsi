@@ -39,8 +39,9 @@
                             <td>{{$exit->number_unit}}</td>
                             <td>{{$exit->item->spesification}}</td>
                             @foreach ($exit->transaction_detail as $item)
-
+                            @if ($item->status == 'exit')
                             <td>{{$item->notes}}</td>
+                            @endif
                             @endforeach
                             <td>{{$exit->created_at}}</td>
 

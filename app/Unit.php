@@ -33,15 +33,17 @@ class Unit extends Model
             $status = $query['status'] ?? 'Ada';
         }
 
-        // switch ($status) {
-        //     case 'Ada':
-        //         $status = '';
-        //         break;
-        //     case 'exit':
-        //         $status = '';
-        //         break;
-        //         //dst
-        // }
+        switch ($status) {
+            case 'Ada':
+                $status = 'Tersedia';
+                break;
+            case 'exit':
+                $status = 'Keluar';
+                break;
+            default:
+                $status = 'Dipinjam';
+                //dst
+        }
 
         return $status;
     }

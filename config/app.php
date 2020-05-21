@@ -161,6 +161,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        // DOMPDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        // MPDF
+        // Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -175,8 +180,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // DOMPDF
-        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -229,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        // 'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
 
     ],
 

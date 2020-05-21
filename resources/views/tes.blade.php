@@ -32,15 +32,14 @@
 
 
 <div style="width: 100%;text-align:center">
-{{-- <img src="{{asset('assets/images/jabar.png')}}" alt="" srcset=""> --}}
+<img src="{{base_path() }}/public/assets/images/jabar.png" alt="" srcset="">
 {{-- {{'tes'}} --}}
 
         PEMERINTAH DAERAH PROVINSI JAWA BARAT <br>
-
-    DINAS PENDIDIKAN<br>
-    CABANG DINAS PENDIDIKAN WILAYAH X <br> SEKOLAH MENENGAH KEJURUAN NEGERI 1 CIREBON <br>
-    Alamat : Jl. Perjuangan By. Pass Sunyaragi Telp. (0231)480202 Cirebon 45132 <br>
-    Website : http://www.smkn1-cirebon.sch.id E-mail : info@smkn1-cirebon.sch.id
+        DINAS PENDIDIKAN<br>
+        CABANG DINAS PENDIDIKAN WILAYAH X <br> SEKOLAH MENENGAH KEJURUAN NEGERI 1 CIREBON <br>
+        Alamat : Jl. Perjuangan By. Pass Sunyaragi Telp. (0231)480202 Cirebon 45132 <br>
+        Website : http://www.smkn1-cirebon.sch.id E-mail : info@smkn1-cirebon.sch.id
 </div>
 <hr>
 

@@ -35,7 +35,8 @@ class ReportController extends Controller
 
         $item = $item->get();
         // $view = view('tes', compact('item'))->render();
-        $pdf = PDF::loadView('tes', ['item' => $item]);
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('tes', ['item' => $item]);
         return $pdf->stream();
 
         // return $item;

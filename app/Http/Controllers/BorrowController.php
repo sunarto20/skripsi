@@ -58,7 +58,7 @@ class BorrowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request ...$request)
+    public function store(Request $request)
     {
         $request->validate([
             'registration_number' => 'required',
@@ -66,14 +66,14 @@ class BorrowController extends Controller
         ]);
 
         try {
-            DB::transaction();
+            DB::beginTransaction();
 
             $transaction = Transaction::create([
                 'unit_id' => $request->number_unit,
                 'reciever' => $request->registration_number
             ]);
 
-            throw new Exception('error');
+            // throw new Exception('error');
 
             Transaction_detail::create([
                 'transaction_id' => $transaction->id,

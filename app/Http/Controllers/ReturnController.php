@@ -74,7 +74,7 @@ class ReturnController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Transaction_detail::where('id', $id)->update([
+        Transaction_detail::where('transaction_id', $id)->update([
             'returned_at' => date("Y-m-d H:i:s")
         ]);
 

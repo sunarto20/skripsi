@@ -31,8 +31,15 @@ class Unit extends Model
         if ($transactionDetail) {
             $query = $this->transaction_detail()->orderBy('created_at', 'DESC')->first();
             $status = $query['status'] ?? 'Ada';
+            $returned = $query['returned_at'] ?? null;
+            if ($status == 'pinjam' && $returned != null) {
+                $status = 'Ada';
+            }
         }
 
+
+        // dd($quereturnry);
+        // return $query;
         switch ($status) {
             case 'Ada':
                 $status = 'Tersedia';
@@ -40,9 +47,8 @@ class Unit extends Model
             case 'exit':
                 $status = 'Keluar';
                 break;
-            default:
+            case 'pinjam':
                 $status = 'Dipinjam';
-                //dst
         }
 
         return $status;

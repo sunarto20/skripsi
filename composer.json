@@ -37,12 +37,12 @@
         "psr-4": {
             "App\\": "app/"
         },
-        "files": [
-            "app/Helpers/TanggalIndo.php"
-        ],
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/TanggalIndo.php"
         ]
     },
     "autoload-dev": {

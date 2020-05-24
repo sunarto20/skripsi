@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
@@ -11,7 +12,7 @@ class Unit extends Model
     ];
 
     protected $appends = [
-        'status'
+        'status', 'exit'
     ];
 
     public function item()
@@ -52,6 +53,18 @@ class Unit extends Model
         }
 
         return $status;
+    }
+
+    public function getExitAttribute()
+    {
+        $transactionDetail = $this->transaction_detail() ?? null;
+        $exit = null;
+        if ($transactionDetail) {
+            $query = $this->transaction_detail()->where('status', 'exit')->orderBy('created_at', 'DESC')->first();
+            $exit = $query['created_at'] ?? null;
+        }
+
+        return $exit;
     }
 
     public function transaction()

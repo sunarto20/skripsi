@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Data Barang</title>
+    <title>Laporan Data Barang Keluar</title>
     <style>
         table{
             margin-top: 12rem;
@@ -101,7 +101,7 @@
 <hr>
 
 <div class="titleReport">
-    Laporan Data Keadaan Barang <br>
+    Laporan Data Barang Keluar <br>
     Tanggal : @if ($start == null)
                 {{'Semua Tanggal'}}
     @elseif(tgl_id($start) == tgl_id($end))
@@ -115,25 +115,22 @@
 
 <table>
     <tr>
-        <th width="10%">No</th>
-        <th width="50%">Nomor Barang</th>
-        <th width="30%">Lokasi</th>
-        <th width="30%">Tangal Tambah</th>
-        <th width="20%">Keterangan</th>
+        <th width="5%">No</th>
+        <th width="50%">Nama Barang</th>
+        <th width="30%">Nomor Barang</th>
+        <th width="30%">Tangal Keluar</th>
+        <th width="30%">Keterangan</th>
     </tr>
-    @foreach ($item as $tes)
-        <tr>
-            <td  colspan="5" style="font-weight: bold;background-color: #d3d3d3">{{strtoupper( $tes->name ) }}</td>
-        </tr>
-            @foreach ($tes->unit as $item)
+    @foreach ($exits as $exit)
+           
             <tr>
-                    <td>{{$loop->iteration }}</td>
-                    <td>{{$item->number_unit}}</td>
-                    <td>{{$item->room->name}}</td>
-                    <td>{{ tgl_id($item->created_at) }}</td>
-                    <td>{{$item->status}}</td>
+                    <td style="text-align: center">{{$loop->iteration }}</td>
+                    <td>{{$exit->transaction->unit->item->name}}</td>
+                    <td>{{$exit->transaction->unit->number_unit}}</td>
+                    <td>{{ tgl_id($exit->created_at) }}</td>
+                    <td>{{$exit->notes}}</td>
                 </tr>
-            @endforeach
+            
     @endforeach
 </table>
 <br>

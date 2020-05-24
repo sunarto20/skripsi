@@ -88,6 +88,12 @@ Route::post('keluar/tambah', 'ExitItemController@store')->name('exit.store');
 Route::get('laporan/item', 'ReportController@reportItemIndex')->name('report.item.index');
 Route::post('laporan/item/cetak', 'ReportController@reportItem')->name('report.item');
 Route::get('laporan/item/cetak', 'ReportController@reportItem')->name('report.item');
+Route::get('laporan/barang-keluar', 'ReportController@reportExitIndex')->name('report.exit.index');
+Route::post('laporan/barang-keluar/cetak', 'ReportController@reportExit')->name('report.exit');
+Route::get('laporan/barang-keluar/cetak', 'ReportController@reportExit')->name('report.exit');
+Route::get('laporan/peminjaman-barang', 'ReportController@reportBorrowIndex')->name('report.borrow.index');
+Route::post('laporan/peminjaman-barang/cetak', 'ReportController@reportBorrow')->name('report.borrow');
+Route::get('laporan/peminjaman-barang/cetak', 'ReportController@reportBorrow')->name('report.borrow');
 // Route::post('laporan/item', 'ReportController@reportItem')->name('report.siswwa');
 // tes
 Route::get('tes', 'UnitCOntroller@tesPdf');

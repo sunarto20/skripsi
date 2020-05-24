@@ -1,11 +1,11 @@
 @extends('layouts.main')
-@section('title','Data ruangan')
+@section('title','Laporan data barang keluar')
 @section('content')
 
 
 <div class="page-header">
     <h1>
-        Laporan Data Barang
+        Laporan Data Barang Keluar
     </h1>
 </div><!-- /.page-header -->
 <div class="row">
@@ -19,13 +19,13 @@
                         <span class="input-group-addon">
                             <i class="fa fa-calendar bigger-110"></i>
                         </span>
-                <form action="{{route('report.item')}}" method="post">
+                <form action="{{route('report.exit')}}" method="post">
                     @csrf
                         <input class="form-control" type="text" name="date" id="id-date-range-picker-1" />
                     </div>
                     <div class="space-8"></div>
                     <button type="submit" class="btn btn-primary btn-sm">Cetak berdasarkan tanggal</button>
-                    <a href="{{route('report.item')}}" class="btn btn-sm btn-success">Cetak Semua Data</a>
+                    <a href="{{route('report.exit')}}" class="btn btn-sm btn-success">Cetak Semua Data</a>
                 </form>
                 <!-- PAGE CONTENT ENDS -->
                 <hr />

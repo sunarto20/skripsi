@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Data Barang Keluar</title>
+    <title>Laporan Data Peminjaman Barang</title>
     <style>
         table{
             margin-top: 12rem;
@@ -101,7 +101,7 @@
 <hr>
 
 <div class="titleReport">
-    Laporan Data Barang Keluar <br>
+    Laporan Data Peminjaman Barang <br>
     Tanggal : @if ($start == null)
                 {{'Semua Tanggal'}}
     @elseif(tgl_id($start) == tgl_id($end))

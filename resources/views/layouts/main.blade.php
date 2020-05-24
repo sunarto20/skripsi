@@ -510,21 +510,21 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href=" {{route('borrow.index')}} ">
+								<a href=" {{route('report.item.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Laporan Data Barang </span>
 								</a>
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href=" {{route('return.index')}} ">
+								<a href=" {{route('report.borrow.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Laporan Peminjaman Barang </span>
 								</a>
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href=" {{route('return.index')}} ">
+								<a href=" {{route('report.exit.index')}} ">
 									<i class="menu-icon fa fa-caret-right"></i>
 									<span class="menu-text"> Laporan Barang Keluar </span>
 								</a>

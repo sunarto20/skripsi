@@ -21,7 +21,11 @@
                 <div class="col-xs-12 col-sm-3 center">
                     <div>
                         <span class="profile-picture">
-                            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('assets/images/avatars/profile-pic.jpg')}}" />
+                            @if ($item->foto)
+                            <img id="foto" class="editable img-responsive"  src="{{url('storage/'.$item->foto)}}" width="180px" height="200px" />
+                            @else
+                            <img id="foto" class="editable img-responsive"  src="{{url('storage/items/default.jpg')}}" />
+                            @endif
                         </span>
                         <div class="space-4"></div>
 
@@ -139,5 +143,8 @@
             if (isConfirm) window.location.reload;
         })
     }
+</script>
+<script>
+
 </script>
 @endpush

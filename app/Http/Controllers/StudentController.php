@@ -68,9 +68,9 @@ class StudentController extends Controller
         ]);
 
         // cek avatar
-        // $nameFile = '';
+        $avatar = '';
         if ($request->file('avatar')) {
-            $file = $request->file('avatar')->store('avatars');
+            $avatar = $request->file('avatar')->store('avatars');
         }
 
         // dd($file);
@@ -86,7 +86,7 @@ class StudentController extends Controller
             'gender' => $request->gender,
             'phone_number' => $request->phoneNumber,
             'class_id' => $request->class,
-            'avatar' => $file
+            'avatar' => $avatar
 
         ]);
 

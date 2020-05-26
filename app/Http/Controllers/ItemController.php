@@ -6,6 +6,7 @@ use App\Item;
 use App\Room;
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -49,15 +50,22 @@ class ItemController extends Controller
             'name' => 'required|min:3',
             'spesification' => 'required',
             'amount' => 'required',
-            'room' => 'required'
+            'room' => 'required',
+            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+
+        $fotoItem = '';
+        if ($request->file('foto')) {
+            $fotoItem = $request->file('foto')->store('items');
+        }
 
         // return $request;
 
         $item = Item::create([
             'name' => $request->name,
             'spesification' => $request->spesification,
-            'foto' => 'ini foto'
+            'foto' => $fotoItem
         ]);
 
         //ini kenapa di looping mas?
@@ -123,9 +131,20 @@ class ItemController extends Controller
 
         ]);
 
+        // dd($request->file('foto'));
+
+        $item = $this->getItemById($id);
+        $fotoItem = $item->foto;
+
+        if ($request->file('foto') != null) {
+            Storage::delete($item->foto);
+            $fotoItem = $request->file('foto')->store('items');
+        }
+
         Item::where('id', $id)->update([
             'name' => $request->name,
-            'spesification' => $request->spesification
+            'spesification' => $request->spesification,
+            'foto' => $fotoItem
         ]);
         return redirect()->route('item.index')->with('status', 'Barang Berhasil di Ubah!');
     }
@@ -168,5 +187,10 @@ class ItemController extends Controller
         ]);
 
         return redirect()->route('item.index')->with('status', 'Data Berhasil di Update!');
+    }
+
+    public function getItemById($id)
+    {
+        return Item::where('id', $id)->first();
     }
 }

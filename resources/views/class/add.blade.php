@@ -17,7 +17,7 @@
             <div class="form-group row @error('name') has-error @enderror">
               <label for="inputPassword" class="col-sm-2 col-form-label">Nama Kelas</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control"  name="name" id="inputPassword" placeholder="Nama Ruangan">
+                <input type="text" class="form-control"  name="name" id="inputPassword" placeholder="Nama Kelas">
                 @error('name')
 
                 <div class="invalid-feedback text-danger">

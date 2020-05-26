@@ -15,7 +15,12 @@
                 <div class="col-xs-12 col-sm-3 center">
                     <div>
                         <span class="profile-picture">
-                            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('assets/images/avatars/profile-pic.jpg')}}" />
+                            @if ($student->avatar)
+                            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('storage/'.$student->avatar)}}" width="180px" height="200px" />
+                            @else
+                            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('storage/avatars/default.jpg')}}" />
+                            @endif
+
                         </span>
                         <div class="space-4"></div>
                         <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
@@ -85,7 +90,7 @@
 
                             <div class="profile-info-value">
                                 <a href="{{route('student.index')}}" class="btn btn-sm btn-warning"><span class="editable" id="about">Kambali</span></a>
-                                <a href=""class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
+                                <a href="{{route('student.edit',['id'=>$student->id])}}"class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
                                 <a href="  "class="btn btn-sm btn-danger"><span class="editable" id="about">Hapus</span></a>
                             </div>
                         </div>

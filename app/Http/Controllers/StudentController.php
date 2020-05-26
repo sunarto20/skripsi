@@ -7,6 +7,7 @@ use \App\Student;
 use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -52,8 +53,11 @@ class StudentController extends Controller
             'registration_number' => 'required|unique:students|min:3|numeric',
             'class' => 'required',
             'gender' => 'required',
-            'phoneNumber' => 'required|min:3|max:255'
+            'phoneNumber' => 'required|min:3|max:255',
+            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        // dd($request->avatar);
         // return $request;
         // Insert to table Users
         $user = User::create([
@@ -62,6 +66,14 @@ class StudentController extends Controller
             'password' => bcrypt($request->registration_number),
             'role' => "siswa",
         ]);
+
+        // cek avatar
+        // $nameFile = '';
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar')->store('avatars');
+        }
+
+        // dd($file);
 
         // return $user;
 
@@ -73,7 +85,9 @@ class StudentController extends Controller
             'registration_number' => $user->username,
             'gender' => $request->gender,
             'phone_number' => $request->phoneNumber,
-            'class_id' => $request->class
+            'class_id' => $request->class,
+            'avatar' => $file
+
         ]);
 
         return redirect(route('student.index'))->with('status', 'Data Siswa Berhasil di Tambah');
@@ -92,7 +106,7 @@ class StudentController extends Controller
             ->whereHas('transaction', function ($q) use ($id) {
                 $q->where('reciever', $id);
             })->get();
-        // return $histories;
+        // return $student;
 
         // $student = response()->json($student);
         return view('student.detail', [
@@ -130,14 +144,31 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         // Check Validate Field Students
         $request->validate([
             'name' => 'required|min:3|max:255',
             'class' => 'required',
             'gender' => 'required',
-            'phoneNumber' => 'required|min:3|max:255'
+            'phoneNumber' => 'required|min:3|max:255',
+            // 'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         // return $request;
+
+        // deleted data storage old file image
+
+        // dd($request->file('avatar'));
+
+        $student = $this->getStudentById($id);
+
+        if ($request->file('avatar') != null) {
+
+            Storage::delete($student->avatar);
+            $avatar = $request->file('avatar')->store('avatars');
+        } else {
+            $avatar = $student->avatar;
+        }
 
         // Update data to table Students
 
@@ -145,7 +176,8 @@ class StudentController extends Controller
             'name' => $request->name,
             'gender' => $request->gender,
             'phone_number' => $request->phoneNumber,
-            'class_id' => $request->class
+            'class_id' => $request->class,
+            'avatar' => $avatar
         ]);
 
         return redirect(route('student.index'))->with('status', 'Data Siswa Berhasil di Ubah');
@@ -161,5 +193,10 @@ class StudentController extends Controller
     {
         Student::findOrFail($id)->delete();
         // return redirect('student.index');
+    }
+
+    public function getStudentById($id)
+    {
+        return Student::where('id', $id)->first();
     }
 }

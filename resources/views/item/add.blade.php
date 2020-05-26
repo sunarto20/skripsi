@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Tambah data siswa')
+@section('title','Tambah data barang')
 @section('content')
 
 <div class="row">
@@ -42,7 +42,7 @@
             <div class="form-group row @error('spesification') has-error @enderror">
                 <label for="name" class="col-sm-2 col-form-label">Spesifikasi Barang</label>
                 <div class="col-sm-3">
-                    <textarea class="form-control" name="spesification" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <textarea class="form-control" name="spesification" id="exampleFormControlTextarea1" rows="5" placeholder="Deskripsi Barang"></textarea>
                   @error('spesification')
   
                   <div class="invalid-feedback text-danger">
@@ -71,7 +71,7 @@
             <div class="form-group row @error('amount') has-error @enderror">
               <label for="room" class="col-sm-2 col-form-label">Jumlah</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control" name="amount">
+                <input type="number" class="form-control" name="amount" placeholder="Masukkan Jumlah Barang">
               </div>
                 @error('amount')
                 <div class="invalid-feedback text-danger">

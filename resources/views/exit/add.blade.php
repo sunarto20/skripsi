@@ -35,19 +35,19 @@
             <div class="form-group row">
               <label for="" class="col-sm-2 col-form-label">Nama Barang</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control"  id="nameUnit" disabled>
+                <input type="text" class="form-control" placeholder="nama barang"  id="nameUnit" disabled>
               </div>
             </div>
             <div class="form-group row ">
                 <label for="name" class="col-sm-2 col-form-label">Spesifikasi Barang</label>
                 <div class="col-sm-3">
-                    <textarea class="form-control" id="spesification"  rows="5" disabled></textarea>
+                    <textarea class="form-control" placeholder="deskripsi barang" id="spesification"  rows="5" disabled></textarea>
                 </div>
             </div>
             <div class="form-group row @error('notes') has-error @enderror">
               <label for="room" class="col-sm-2 col-form-label">Keterangan</label>
               <div class="col-sm-3">
-                <textarea class="form-control" name="notes" rows="3"></textarea>
+                <textarea class="form-control" placeholder="Keterangan Keluar" name="notes" rows="3"></textarea>
               </div>
                 @error('notes')
                 <div class="invalid-feedback text-danger">

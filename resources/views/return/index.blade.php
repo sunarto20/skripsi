@@ -10,9 +10,9 @@
         @endif
         <div class="clearfix">
             <div class="pull-right  " style="margin-bottom:8px !important">
-                <a href="" class="btn btn-sm btn-success">
+                {{-- <a href="" class="btn btn-sm btn-success">
                     <i class="fa fa-plus"> Tambah Data</i>
-                </a>
+                </a> --}}
             </div>
         </div>
         <div class="table-header no-margin-top">
@@ -42,9 +42,9 @@
                     <td>{{ date('d M Y H:i:s',strtotime($return->returned_at)) }}</td>
                     <td>
                         <div class="text-center">
-                            <a class="yellow" href="  ">
+                            {{-- <a class="yellow" href="  ">
                                 <i class="ace-icon fa fa-eye "></i>
-                            </a>
+                            </a> --}}
                             <a class="red tombol-hapus" onclick="deleteData('')"><i class="ace-icon fa fa-trash"></i>
                             </a>
                         </div>

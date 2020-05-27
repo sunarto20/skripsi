@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login()
+
     {
+        if (auth()->user()) {
+            return redirect()->route('dashboard');
+        }
         return view('auth.login');
     }
 

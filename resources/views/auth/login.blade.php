@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Login Page - Ace Admin</title>
+		<title>Login Page - Simbeng</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -57,8 +57,7 @@
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="text-center">
-
-												<img src="{{url('assets/images/logo.png')}}" alt="">
+												<img src="{{url('assets/images/logo.png')}}" alt="" width="200px">
 											</div>
 											<h5 class="header blue lighter bigger text-center">
 												

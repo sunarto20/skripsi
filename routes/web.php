@@ -24,7 +24,6 @@ Route::get('logout', 'AuthController@logout')->name('logout');
 
 
 
-
 Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
 
     // Route Root
@@ -53,6 +52,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     // students
     Route::get('/siswa', 'StudentController@index')->name('student.index');
     Route::get('/siswa/tambah', 'StudentController@create')->name('student.create');
+    // Route::get('/siswa/detail', 'StudentController@getDetailStudentByRole')->name('student.getDetail');
     Route::get('/siswa/{id}', 'StudentController@show')->name('student.detail');
     Route::post('/siswa/tambah', 'StudentController@store')->name('student.store');
     Route::get('/siswa/{id}/edit', 'StudentController@edit')->name('student.edit');
@@ -107,9 +107,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('tes', 'UnitCOntroller@tesPdf');
 });
 
+Route::group(['middleware' => ['auth', 'CheckRole:siswa']], function () {
+    Route::get('detail', 'StudentController@getDetailStudentByRole')->name('student.getDetail');
+});
 Route::group(['middleware' => ['auth', 'CheckRole:siswa,admin']], function () {
-    Route::get('/siswa/{id}', 'StudentController@show')->name('student.detail');
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('dashboard');
 });

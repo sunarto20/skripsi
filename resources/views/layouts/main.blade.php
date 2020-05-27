@@ -142,7 +142,7 @@
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.html">
+					<a href="{{route('dashboard')}}">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -282,8 +282,8 @@
 					</li>
 					@else
 					<li class="">
-						<a href="{{route('student.detail',['id'=>auth()->user()->username])}}">
-							<i class="menu-icon fa fa-tachometer"></i>
+						<a href="{{route('student.getDetail')}}">
+							<i class="menu-icon fa fa-user"></i>
 							<span class="menu-text"> Detail Siswa </span>
 						</a>
 

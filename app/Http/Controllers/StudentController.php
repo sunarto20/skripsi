@@ -99,7 +99,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id = '')
+    public function show($id)
     {
 
         $student = Student::with(['user', 'class'])->where('id', $id)->first();
@@ -108,13 +108,7 @@ class StudentController extends Controller
                 $q->where('reciever', $id);
             })->get();
 
-        if (auth()->user()->role == 'siswa') {
-            $student = Student::with(['user', 'class'])->where('id', auth()->user()->student->id)->first();
-            $histories = Unit::with(['item', 'room', 'transaction', 'transaction_detail', 'transaction.student'])
-                ->whereHas('transaction', function ($q) use ($id) {
-                    $q->where('reciever', auth()->user()->student->id);
-                })->get();
-        }
+
 
         // return $student;
 
@@ -208,5 +202,25 @@ class StudentController extends Controller
     public function getStudentById($id)
     {
         return Student::where('id', $id)->first();
+    }
+
+    public function getDetailStudentByRole()
+    {
+        $id = auth()->user()->student->id;
+        if (auth()->user()->role == 'siswa') {
+            $student = Student::with(['user', 'class'])->where('id', $id)->first();
+            $histories = Unit::with(['item', 'room', 'transaction', 'transaction_detail', 'transaction.student'])
+                ->whereHas('transaction', function ($q) use ($id) {
+                    $q->where('reciever', $id);
+                })->get();
+        }
+
+        // return $student;
+
+        // $student = response()->json($student);
+        return view('student.detail', [
+            'student' => $student,
+            'histories' => $histories
+        ]);
     }
 }

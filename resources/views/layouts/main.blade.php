@@ -78,7 +78,7 @@
 								<img class="nav-user-photo" src="{{url('assets/images/avatars/user.jpg')}}" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Selamat Datang,</small>
-									Jason
+									{{auth()->user()->name}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -102,7 +102,7 @@
 								{{-- <li class="divider"></li>	 --}}
 
 								<li>
-									<a href="#">
+									<a href="{{route('logout')}}">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -149,6 +149,9 @@
 
 						<b class="arrow"></b>
 					</li>
+					@if (auth()->user()->role == 'admin')
+						
+					
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-database"></i>
@@ -277,6 +280,16 @@
 							</li>
 						</ul>
 					</li>
+					@else
+					<li class="">
+						<a href="{{route('student.detail',['id'=>auth()->user()->username])}}">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> Detail Siswa </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					@endif
 				</ul><!-- /.nav-list -->
 			</div>
 

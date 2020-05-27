@@ -85,15 +85,17 @@
                                 <span class="editable" id="login"> {{$student->created_at}} </span>
                             </div>
                         </div>
-                        <div class="profile-info-row">
-                            <div class="profile-info-name"> Aksi </div>
+                        @if (auth()->user()->role == 'admin')
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> Aksi </div>
 
-                            <div class="profile-info-value">
-                                <a href="{{route('student.index')}}" class="btn btn-sm btn-warning"><span class="editable" id="about">Kambali</span></a>
-                                <a href="{{route('student.edit',['id'=>$student->id])}}"class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
-                                <a href="  "class="btn btn-sm btn-danger"><span class="editable" id="about">Hapus</span></a>
+                                <div class="profile-info-value">
+                                    <a href="{{route('student.index')}}" class="btn btn-sm btn-warning"><span class="editable" id="about">Kambali</span></a>
+                                    <a href="{{route('student.edit',['id'=>$student->id])}}"class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
+                                    <a href="  "class="btn btn-sm btn-danger"><span class="editable" id="about">Hapus</span></a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

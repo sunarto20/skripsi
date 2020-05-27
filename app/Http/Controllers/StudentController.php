@@ -99,13 +99,23 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = '')
     {
+
         $student = Student::with(['user', 'class'])->where('id', $id)->first();
         $histories = Unit::with(['item', 'room', 'transaction', 'transaction_detail', 'transaction.student'])
             ->whereHas('transaction', function ($q) use ($id) {
                 $q->where('reciever', $id);
             })->get();
+
+        if (auth()->user()->role == 'siswa') {
+            $student = Student::with(['user', 'class'])->where('id', auth()->user()->student->id)->first();
+            $histories = Unit::with(['item', 'room', 'transaction', 'transaction_detail', 'transaction.student'])
+                ->whereHas('transaction', function ($q) use ($id) {
+                    $q->where('reciever', auth()->user()->student->id);
+                })->get();
+        }
+
         // return $student;
 
         // $student = response()->json($student);

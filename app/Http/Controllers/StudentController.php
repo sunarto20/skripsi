@@ -195,6 +195,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
+        $student = $this->getStudentById($id);
+        Storage::delete($student->avatar);
         Student::findOrFail($id)->delete();
         // return redirect('student.index');
     }

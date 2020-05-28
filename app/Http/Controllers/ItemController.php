@@ -156,7 +156,10 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
+        $item = $this->getItemById($id);
+        Storage::delete($item->foto);
         Item::findOrFail($id)->delete();
     }
 

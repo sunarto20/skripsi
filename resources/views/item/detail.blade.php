@@ -22,6 +22,7 @@
                     <div>
                         <span class="profile-picture">
                             @if ($item->foto)
+                            
                             <img id="foto" class="editable img-responsive"  src="{{url('storage/'.$item->foto)}}" width="180px" height="200px" />
                             @else
                             <img id="foto" class="editable img-responsive"  src="{{url('storage/items/default.jpg')}}" />

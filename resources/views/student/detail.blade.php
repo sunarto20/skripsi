@@ -16,6 +16,7 @@
                     <div>
                         <span class="profile-picture">
                             @if ($student->avatar)
+                            
                             <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('storage/'.$student->avatar)}}" width="180px" height="200px" />
                             @else
                             <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="{{url('storage/avatars/default.jpg')}}" />

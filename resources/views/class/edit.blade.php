@@ -16,7 +16,7 @@
             @csrf
             @method('PUT')
             <div class="form-group row @error('name') has-error @enderror">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Nama Ruangan</label>
+              <label for="inputPassword" class="col-sm-2 col-form-label">Nama Kelas</label>
               <div class="col-sm-3">
                 <input type="text" class="form-control"  name="name" id="inputPassword" value="{{$class->name}}">
                 @error('name')
@@ -27,8 +27,8 @@
               </div>
             </div>
             <div class="clearfix form-actions">
-                <button type="submit" class="btn btn-primary btn-sm mb-2">Tambah</button>
-                <button type="reset" class="btn btn-danger btn-sm mb-2">Hapus</button>
+                <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
+                <button  class="btn btn-danger btn-sm mb-2" onclick="return back()">Kembali</button>
             </div>
         </form>
         <!-- PAGE CONTENT ENDS -->

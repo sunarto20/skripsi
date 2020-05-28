@@ -61,9 +61,9 @@
                             <div class="profile-info-name"> Aksi </div>
 
                             <div class="profile-info-value">
-                                <a href="" class="btn btn-sm btn-warning"><span class="editable" id="about">Kambali</span></a>
-                                <a href=""class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
-                                <a href="  "class="btn btn-sm btn-danger"><span class="editable" id="about">Hapus</span></a>
+                            <a href="{{route('item.index')}}" class="btn btn-sm btn-warning"><span class="editable" id="about">Kembali</span></a>
+                                <a href="{{route('item.edit',['id'=>$item->id])}}"class="btn btn-sm btn-success"><span class="editable" id="about">Edit</span></a>
+                            <a onclick="deleteItem('{{$item->id}}')" class="btn btn-sm btn-danger"><span class="editable" id="about">Hapus</span></a>
                             </div>
                         </div>
                     </div>
@@ -132,6 +132,44 @@
 <script src="{{url('assets/js/bootstrap-editable.min.js')}}"></script>
 <script src="{{url('assets/js/ace-editable.min.js')}}"></script>
 <script src="{{url('assets/js/sweetalert2.all.min.js')}}"></script>
+
+<script>
+    function deleteItem(id){
+// alert('dasda')
+        let csrf_token =$('meta[name="csrf-token"]').attr('content');
+        let url1= '{{url('barang')}}';
+        let url = "{{url('barang')}}"+'/'+id;
+        Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Anda akan menghapus data ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url,
+                    type:"POST",
+                    data: {'_method':'DELETE', '_token':csrf_token},
+                    success: (data)=>{
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil di hapus.',
+                            'success'
+                        ).then((isConfirm) => {
+                            if(isConfirm) window.location = url1;
+                        });
+                    },
+
+                });
+            }
+        });
+    }
+</script>
+
 <script>
     // updated and added ruangan
     const data = $('.flashdata').data('flashdata');

@@ -65,7 +65,7 @@
     function deleteData(id){
         // id.preventDefault();
         let csrf_token =$('meta[name="csrf-token"]').attr('content');
-        let url1= '{{url('kelas')}}';
+        let url1= "{{url(route('class.index'))}}";
         let url = "{{url('kelas')}}"+'/'+id;
         Swal.fire({
             title: 'Anda Yakin?',

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Data Peminjaman Barang')
+@section('title','Data Pengembalian Barang')
 @section('content')
 
 <div class="row">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="table-header no-margin-top">
-            Data Peminjaman Barang
+            Data Pengembalian Barang
         </div>
 
         <table id="example" class="table table-hover table-bordered" width="100%">
@@ -28,7 +28,7 @@
                     <th>Peminjam</th>
                     <th>Kelas</th>
                     <th>Tanggal Kembali</th>
-                    <th width="10">Aksi</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -40,15 +40,7 @@
                     <td><a href="">{{$return->transaction->student->name}}</a></td>
                     <td>{{$return->transaction->student->class->name}}</td>
                     <td>{{ date('d M Y H:i:s',strtotime($return->returned_at)) }}</td>
-                    <td>
-                        <div class="text-center">
-                            {{-- <a class="yellow" href="  ">
-                                <i class="ace-icon fa fa-eye "></i>
-                            </a> --}}
-                            <a class="red tombol-hapus" onclick="deleteData('')"><i class="ace-icon fa fa-trash"></i>
-                            </a>
-                        </div>
-                    </td>
+                    
                 </tr>
                 @endforeach
             </tbody>

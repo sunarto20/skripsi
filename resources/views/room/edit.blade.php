@@ -27,8 +27,8 @@
               </div>
             </div>
             <div class="clearfix form-actions">
-                <button type="submit" class="btn btn-primary btn-sm mb-2">Tambah</button>
-                <button type="reset" class="btn btn-danger btn-sm mb-2">Hapus</button>
+                <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
+                {{-- <button onclick="window.history.back" class="btn btn-danger btn-sm mb-2">Kembali</button> --}}
             </div>
         </form>
         <!-- PAGE CONTENT ENDS -->

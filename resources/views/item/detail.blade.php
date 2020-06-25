@@ -25,7 +25,7 @@
 
                             <img id="foto" class="editable img-responsive"  src="{{url('storage/'.$item->foto)}}" width="180px" height="200px" />
                             @else
-                            <img id="foto" class="editable img-responsive"  src="{{url('storage/items/default.jpg')}}" />
+                            <img id="foto" class="editable img-responsive"  src="{{url('storage/items/item.png')}}" />
                             @endif
                         </span>
                         <div class="space-4"></div>
@@ -105,7 +105,12 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$unit->number_unit}}</a></td>
                                             <td>{{$unit->room->name}}</td>
-                                            <td><span class="label label-sm label-info arrowed arrowed-righ">{{ $unit->status }}</span></td>
+                                            <td>
+                                                @if ($unit->status == "Dipinjam")
+
+                                                <span class="label label-sm label-danger arrowed arrowed-righ">{{ $unit->status }}</span></td>
+                                                @endif
+                                                <span class="label label-sm label-info arrowed arrowed-righ">{{ $unit->status }}</span></td>
                                             <td>
                                                 <div class="text-center">
 

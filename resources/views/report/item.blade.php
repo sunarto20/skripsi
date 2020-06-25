@@ -118,22 +118,29 @@
         <th width="10%">No</th>
         <th width="50%">Nomor Barang</th>
         <th width="30%">Lokasi</th>
+        <th width="5%">Tahun Pembuatan</th>
         <th width="30%">Tangal Tambah</th>
         <th width="20%">Keterangan</th>
     </tr>
+    <?php
+$no = 1;
+        ?>
     @foreach ($item as $tes)
         <tr>
-            <td  colspan="5" style="font-weight: bold;background-color: #d3d3d3">{{strtoupper( $tes->name ) }}</td>
+            <td  colspan="6" style="font-weight: bold;background-color: #d3d3d3">{{strtoupper( $tes->name ) }}</td>
         </tr>
-            @foreach ($tes->unit as $item)
-            <tr>
-                    <td>{{$loop->iteration }}</td>
-                    <td>{{$item->number_unit}}</td>
-                    <td>{{$item->room->name}}</td>
-                    <td>{{ tgl_id($item->created_at) }}</td>
-                    <td>{{$item->status}}</td>
-                </tr>
-            @endforeach
+
+        @foreach ($tes->unit as $item)
+        <tr>
+
+            <td>{{$no++ }}</td>
+            <td>{{$item->number_unit}}</td>
+            <td>{{$item->room->name}}</td>
+            <td>{{$tes->year_production}}</td>
+            <td>{{ tgl_id($tes->recieve_date) }}</td>
+            <td>{{$item->status}}</td>
+        </tr>
+        @endforeach
     @endforeach
 </table>
 <br>

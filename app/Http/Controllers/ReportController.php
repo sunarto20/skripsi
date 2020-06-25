@@ -32,14 +32,14 @@ class ReportController extends Controller
             $start = Carbon::parse($range[0]);
             $end = Carbon::parse($range[1])->endOfDay();
             // return $start;
-            $item = $item->whereBetween('created_at', [$start, $end]);
+            $item = $item->whereBetween('recieve_date', [$start, $end]);
         }
 
         $item = $item->get();
 
         // return $item;
         $pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.item', ['item' => $item, 'start' => $start, 'end' => $end])->setPaper('A4', 'potrait');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.item', ['item' => $item, 'start' => $start, 'end' => $end])->setPaper('A4', 'landscape');
 
         return $pdf->stream();
 

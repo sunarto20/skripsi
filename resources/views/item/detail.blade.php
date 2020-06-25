@@ -22,7 +22,7 @@
                     <div>
                         <span class="profile-picture">
                             @if ($item->foto)
-                            
+
                             <img id="foto" class="editable img-responsive"  src="{{url('storage/'.$item->foto)}}" width="180px" height="200px" />
                             @else
                             <img id="foto" class="editable img-responsive"  src="{{url('storage/items/default.jpg')}}" />
@@ -37,24 +37,30 @@
                     <div class="profile-user-info profile-user-info-striped">
                         <div class="profile-info-row">
                             <div class="profile-info-name"> Nama Produk </div>
-
                             <div class="profile-info-value">
                                 <span class="editable" id="username"> {{$item->name}} </span>
                             </div>
                         </div>
                         <div class="profile-info-row">
-                            <div class="profile-info-name"> Spesifikasi / Keterangan  </div>
+                            <div class="profile-info-name"> Spesifikasi  </div>
 
                             <div class="profile-info-value">
                                 <span class="editable" id="city"> {{$item->spesification}} </span>
                             </div>
                         </div>
-
                         <div class="profile-info-row">
-                            <div class="profile-info-name"> Tanggal di Tambahkan </div>
+                            <div class="profile-info-name"> Tahun Pembuatan  </div>
 
                             <div class="profile-info-value">
-                                <span class="editable" id="login"> {{$item->created_at}} </span>
+                                <span class="editable" id="city"> {{$item->year_production}} </span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name"> Tanggal Masuk </div>
+
+                            <div class="profile-info-value">
+                                <span class="editable" id="login"> {{date("d M Y",strtotime($item->recieve_date))}} </span>
                             </div>
                         </div>
                         <div class="profile-info-row">

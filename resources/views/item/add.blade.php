@@ -26,11 +26,11 @@
                 @enderror
               </div>
             </div>
-            
+
             <div class="form-group row @error('name') has-error @enderror">
               <label for="" class="col-sm-2 col-form-label">Nama Barang</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control"  name="name" id="" placeholder="Nama Barang" value="{{old('')}}">
+                <input type="text" class="form-control"  name="name" id="" placeholder="Nama Barang" value="{{old('name')}}">
                 @error('name')
 
                 <div class="invalid-feedback text-danger">
@@ -44,7 +44,24 @@
                 <div class="col-sm-3">
                     <textarea class="form-control" name="spesification" id="exampleFormControlTextarea1" rows="5" placeholder="Deskripsi Barang"></textarea>
                   @error('spesification')
-  
+
+                  <div class="invalid-feedback text-danger">
+                      {{$message}}
+                  </div>
+                  @enderror
+                </div>
+            </div>
+            <div class="form-group row @error('name') has-error @enderror">
+                <label for="" class="col-sm-2 col-form-label">Tahun Produksi</label>
+                <div class="col-sm-3">
+                    <select id="year" name="year" class="form-control js-example-basic-single"></select>
+                </div>
+            </div>
+            <div class="form-group row @error('date_income') has-error @enderror">
+                <label for="" class="col-sm-2 col-form-label">Tanggal Masuk</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control"  name="date_income" id="" value="{{old('')}}">
+                  @error('date_income')
                   <div class="invalid-feedback text-danger">
                       {{$message}}
                   </div>
@@ -55,11 +72,11 @@
               <label for="room" class="col-sm-2 col-form-label">Lokasi</label>
               <div class="col-sm-3">
                 <select class="form-control js-example-basic-single" name="room">
-                  <option value="">Pilih Ruangan</option>  
+                  <option value="">Pilih Ruangan</option>
                     @foreach ($rooms as $room)
                         <option value="{{$room->id}}" {{old('room')==$room->id?'selected':''}} >{{$room->name}}</option>
                     @endforeach
-                    
+
                   </select>
               </div>
                 @error('room')
@@ -79,7 +96,7 @@
                 </div>
                 @enderror
             </div>
-            
+
             <div class="form-group row  @error('foto') has-error @enderror">
               <label for="phoneNumber" class="col-sm-2 col-form-label">Foto Barang</label>
               <div class="col-sm-3">
@@ -100,7 +117,7 @@
                 @enderror
               </div>
             </div>
-            
+
             <div class="clearfix form-actions">
                 <button type="submit" class="btn btn-primary btn-sm mb-2">Tambah</button>
                 <button type="reset" class="btn btn-danger btn-sm mb-2">Hapus</button>
@@ -161,7 +178,7 @@
 		$('.btn-file :file').on('fileselect', function(event, label) {
 		    var input = $(this).parents('.input-group').find(':text'),
 		        log = label;
-		    
+
 		    if( input.length ) {
 		        input.val(log);
 		    } else {
@@ -173,14 +190,22 @@
 		        var reader = new FileReader();
 		        reader.onload = function (e) {
 		            $('#img-upload').attr('src', e.target.result);
-		        }   
+		        }
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		}
 		$("#imgInp").change(function(){
 		    readURL(this);
-		}); 	
+		});
 	});
 
+    var end = 1900;
+    var start = new Date().getFullYear();
+    var options = "<option value=''>Pilih Tahun</option>";
+
+    for(var year = start ; year >=end; year--){
+    options += "<option value='"+year+"'>"+ year +"</option>";
+    }
+    document.getElementById("year").innerHTML = options;
 </script>
 @endpush

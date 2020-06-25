@@ -73,8 +73,12 @@
                   <input type="text" class="form-control"  id="class" disabled>
                 </div>
             </div>
-
-
+            <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Tanggal Pinjam</label>
+                <div class="col-sm-3">
+                <input type="text" value="{{tgl_id(date("Y-M-d"))}}" class="form-control"  id="class" disabled>
+                </div>
+            </div>
             <div class="clearfix form-actions">
                 <button type="submit" class="btn btn-primary btn-sm mb-2">Tambah</button>
                 <button type="reset" class="btn btn-danger btn-sm mb-2">Hapus</button>

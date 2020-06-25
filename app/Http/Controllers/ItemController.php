@@ -51,10 +51,12 @@ class ItemController extends Controller
             'spesification' => 'required',
             'amount' => 'required',
             'room' => 'required',
-            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'avatar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'date_income' => 'required',
+            'year' => 'required'
         ]);
 
-
+        // dd($request->date_income);
         $fotoItem = '';
         if ($request->file('foto')) {
             $fotoItem = $request->file('foto')->store('items');
@@ -65,12 +67,11 @@ class ItemController extends Controller
         $item = Item::create([
             'name' => $request->name,
             'spesification' => $request->spesification,
-            'foto' => $fotoItem
+            'foto' => $fotoItem,
+            'year_production' => $request->year,
+            'recieve_date' => $request->date_income
         ]);
 
-        //ini kenapa di looping mas?
-
-        // itu kan buat nambahin nomor_unit, jadi walau itemnya sama tapi nomer unitnya berbeda makanya di looping
         for ($i = 0; $i < $request->amount; $i++) {
             $number = $request->number_unit + $i;
 

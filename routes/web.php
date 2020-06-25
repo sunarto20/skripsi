@@ -2,6 +2,7 @@
 
 // namespace App\Http\Middleware\Role;
 
+use App\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

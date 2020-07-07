@@ -28,7 +28,7 @@
             </div>
             <div class="clearfix form-actions">
                 <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
-                <button  class="btn btn-danger btn-sm mb-2" onclick="return back()">Kembali</button>
+                {{-- <button  class="btn btn-danger btn-sm mb-2" onclick="return back()">Kembali</button> --}}
             </div>
         </form>
         <!-- PAGE CONTENT ENDS -->

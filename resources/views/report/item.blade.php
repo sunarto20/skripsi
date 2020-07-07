@@ -118,7 +118,7 @@
         <th width="10%">No</th>
         <th width="50%">Nomor Barang</th>
         <th width="30%">Lokasi</th>
-        <th width="5%">Tahun Pembuatan</th>
+        <th width="5%">Tahun Pengadaan</th>
         <th width="30%">Tangal Tambah</th>
         <th width="20%">Keterangan</th>
     </tr>

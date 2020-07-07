@@ -96,7 +96,7 @@
                                         <th>Nomor Barang</th>
                                         <th>Lokasi</th>
                                         <th>Keterangan</th>
-                                        <th width="100">Pindah Ruangan</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,11 +111,7 @@
                                                 <span class="label label-sm label-danger arrowed arrowed-righ">{{ $unit->status }}</span></td>
                                                 @endif
                                                 <span class="label label-sm label-info arrowed arrowed-righ">{{ $unit->status }}</span></td>
-                                            <td>
-                                                <div class="text-center">
-
-                                                    <a href="{{route('item.change.room',['id'=>$unit->id])}}" class="green"><i class="ace-icon fa fa-exchange"></i></a></td>
-                                                </div>
+                                        
                                         </tr>
                                     @endforeach
                                 </tbody>

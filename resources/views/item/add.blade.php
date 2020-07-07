@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="form-group row @error('name') has-error @enderror">
-                <label for="" class="col-sm-2 col-form-label">Tahun Produksi</label>
+                <label for="" class="col-sm-2 col-form-label">Tahun Pengadaan</label>
                 <div class="col-sm-3">
                     <select id="year" name="year" class="form-control js-example-basic-single"></select>
                 </div>

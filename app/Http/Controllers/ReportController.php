@@ -17,6 +17,7 @@ class ReportController extends Controller
 {
     public function reportItemIndex()
     {
+
         return view('report.itemindex');
     }
 

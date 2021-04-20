@@ -79,6 +79,7 @@ class BorrowController extends Controller
                 'transaction_id' => $transaction->id,
                 'status' => 'pinjam'
             ]);
+
             DB::commit();
 
             return redirect()->route('borrow.index')->with('status', 'Data Peminjaman Berhasil di Tambah!');

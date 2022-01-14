@@ -15,6 +15,8 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 class ReportController extends Controller
 {
+
+
     public function reportItemIndex()
     {
 
@@ -36,11 +38,12 @@ class ReportController extends Controller
             $item = $item->whereBetween('recieve_date', [$start, $end]);
         }
 
-        $item = $item->get();
 
+        $item = $item->get();
+        // return view('report.item', ['item' => $item, 'start' => $start, 'end' => $end]);
         // return $item;
         $pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.item', ['item' => $item, 'start' => $start, 'end' => $end])->setPaper('A4', 'landscape');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.item', ['item' => $item, 'start' => $start, 'end' => $end, 'logo' => $this->logo()])->setPaper('A4', 'landscape');
 
         return $pdf->stream();
 
@@ -80,7 +83,7 @@ class ReportController extends Controller
         //     'exits' => $exits, 'start' => $start, 'end' => $end
         // ]);
         $pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.exit', ['exits' => $exits, 'start' => $start, 'end' => $end])->setPaper('A4', 'landscape');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'isPhpEnabled' => true])->loadView('report.exit', ['exits' => $exits, 'start' => $start, 'end' => $end, 'logo' => $this->logo()])->setPaper('A4', 'landscape');
 
         return $pdf->stream();
     }
@@ -106,22 +109,23 @@ class ReportController extends Controller
         }
 
         $borrows = $borrows->get();
-
         // return $borrows;
-        // return view('report.exit', [
+        // return view('report.borrow', [
         //     'borrows' => $borrows, 'start' => $start, 'end' => $end
         // ]);
         $pdf = App::make('dompdf.wrapper');
         $pdf = PDF::setOptions([
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
-            'isPhpEnabled' => true
+            'chroot' => realpath('')
         ])->loadView('report.borrow', [
             'borrows' => $borrows,
             'start' => $start,
-            'end' => $end
+            'end' => $end,
+            'logo' => $this->logo()
         ])->setPaper('A4', 'landscape');
 
         return $pdf->stream();
+        // return $pdf->stream();
     }
 }

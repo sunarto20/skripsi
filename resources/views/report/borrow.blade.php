@@ -53,11 +53,13 @@
         }
 
         table.titi-mangsa {
-            border: 0
+            border: 0 !important
         }
 
-        table.titi-mangsa tr td {
-            border: 0
+        table.titi-mangsa,
+        tr,
+        td {
+            border: 0 !important
         }
 
         #header,
@@ -82,6 +84,7 @@
         .page-number:before {
             content: "Page "counter(page);
         }
+
     </style>
 </head>
 
@@ -90,10 +93,16 @@
         <div class="page-number"></div>
     </div> --}}
     {{-- {{tgl_id($start)}} --}}
+    {{-- @php
+        $path = asset('storage/images/jabar.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    @endphp --}}
     <table style="border: none">
         <tr style="border: none">
             <td width="50px" style="border: none;text-align: center">
-                <img src="{{base_path() }}/public/storage/assets/images/jabar.png" width="100px">
+                <img src="{{ $logo }}" alt="BTS" width="100px">
 
             </td>
             <td style="border: none; text-align: center">
@@ -118,11 +127,11 @@
     <div class="titleReport">
         Laporan Data Peminjaman Barang <br>
         Tanggal : @if ($start == null)
-        {{'Semua Tanggal'}}
+            {{ 'Semua Tanggal' }}
         @elseif(tgl_id($start) == tgl_id($end))
-        {{tgl_id($start)}}
+            {{ tgl_id($start) }}
         @else
-        {{tgl_id($start)}} s.d {{tgl_id($end)}}
+            {{ tgl_id($start) }} s.d {{ tgl_id($end) }}
         @endif
 
 
@@ -138,70 +147,72 @@
             <th width="30%">Tangal Pinjam</th>
             <th width="30%">Tangal Kembali</th>
         </tr>
-        @foreach ($borrows as $borrow)
-
-        <tr>
-            <td style="text-align: center">{{$loop->iteration }}</td>
-            <td>{{$borrow->transaction->unit->item->name}}</td>
-            <td>{{$borrow->transaction->unit->number_unit}}</td>
-            <td>{{$borrow->transaction->student->name}}</td>
-            <td>{{$borrow->transaction->student->class->name}}</td>
-            <td>{{ tgl_id($borrow->created_at) }}</td>
-            <td>
-                @if ($borrow->returned_at==null)
-                Belum dikembalikan
-                @else
-                {{tgl_id($borrow->returned_at)}}
-                @endif
-            </td>
-        </tr>
-
-        @endforeach
+        @forelse ($borrows as $borrow)
+            <tr>
+                <td style="text-align: center">{{ $loop->iteration }}</td>
+                <td>{{ $borrow->transaction->unit->item->name }}</td>
+                <td>{{ $borrow->transaction->unit->number_unit }}</td>
+                <td>{{ $borrow->transaction->student->name }}</td>
+                <td>{{ $borrow->transaction->student->class->name }}</td>
+                <td>{{ tgl_id($borrow->created_at) }}</td>
+                <td>
+                    @if ($borrow->returned_at == null)
+                        Belum dikembalikan
+                    @else
+                        {{ tgl_id($borrow->returned_at) }}
+                    @endif
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="7" style="text-align: center">Tidak ada data</td>
+            </tr>
+        @endforelse
     </table>
     <br>
-    <table class="titi-mangsa">
-        <tr>
-            <td width="10%"></td>
-            <td width="50%"></td>
-            <td width="30%"></td>
-            <td width="50%" colspan="2">Cirebon, {{tgl_id(date('d M Y'))}}</td>
+    <table style="border: none" class="titi-mangsa">
+        <tr style="border: none">
+            <td style="border: none" width="10%"></td>
+            <td style="border: none" width="50%"></td>
+            <td style="border: none" width="30%"></td>
+            <td width="50%" style="border: none" colspan="2">Cirebon, {{ tgl_id(date('d M Y')) }}</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="2">Kepala Bengkel/Ketua Jurusan</td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td colspan="2" style="border: none">Kepala Bengkel/Ketua Jurusan</td>
+        </tr>
+        <tr style="border: none">
+            <td height="30" style="border: none"></td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td colspan="2" style="border: none"></td>
         </tr>
         <tr>
-            <td height="30"></td>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td colspan="2" style="border: none">...................................................</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="2">...................................................</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="2">NIP. </td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td style="border: none"></td>
+            <td colspan="2" style="border: none">NIP. </td>
         </tr>
     </table>
 
     <script type="text/php">
         if ( isset($pdf) ) {
-            $text = "Hal. {PAGE_NUM} / {PAGE_COUNT}";
-            $size = 10;
-            $font = $fontMetrics->getFont("Arial");
-            $x = ($pdf->get_width()) / 2;
-            $y = $pdf->get_height() - 35;
-            $pdf->page_text($x, $y, $text, $font, $size);
-    }
-    </script>
+                                                        $text = "Hal. {PAGE_NUM} / {PAGE_COUNT}";
+                                                        $size = 10;
+                                                        $font = $fontMetrics->getFont("Arial");
+                                                        $x = ($pdf->get_width()) / 2;
+                                                        $y = $pdf->get_height() - 35;
+                                                        $pdf->page_text($x, $y, $text, $font, $size);
+                                            }
+                                    </script>
 
 </body>
 
